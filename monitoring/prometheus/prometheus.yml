@@ -1,0 +1,56 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'odoo-production'
+    environment: 'production'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['alertmanager:9093']
+
+# Rule files
+rule_files:
+  - "alerts/*.yml"
+
+# Scrape configurations
+scrape_configs:
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+        labels:
+          service: 'prometheus'
+
+  # PostgreSQL metrics
+  - job_name: 'postgresql'
+    static_configs:
+      - targets: ['postgres-exporter:9187']
+        labels:
+          service: 'postgresql'
+          database: 'odoo'
+
+  # Docker metrics (if you add cAdvisor)
+  - job_name: 'docker'
+    static_configs:
+      - targets: []  # Add cAdvisor:8080 if needed
+        labels:
+          service: 'docker'
+
+  # Odoo application metrics (if you add odoo exporter)
+  - job_name: 'odoo'
+    static_configs:
+      - targets: []  # Add custom Odoo metrics endpoint
+        labels:
+          service: 'odoo'
+          app: 'erp'
+
+  # Node Exporter - System metrics
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
+        labels:
+          service: 'system'
+          instance: 'odoo-server'
