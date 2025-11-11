@@ -1,0 +1,815 @@
+/* ========================================
+   Drone Services Website Theme - Custom Styles
+   ======================================== */
+
+/* Brand Colors - Sky & Flight Inspired */
+$ica-primary: #0ea5e9;      /* Sky Blue */
+$ica-secondary: #1e40af;    /* Deep Blue */
+$ica-accent: #06b6d4;       /* Cyan */
+$ica-dark: #1e293b;         /* Slate Dark */
+$ica-light: #f1f5f9;        /* Slate Light */
+
+/* Typography */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: $ica-dark;
+}
+
+/* ========================================
+   Header Styles
+   ======================================== */
+
+/* Logo Styling */
+.navbar-brand.logo {
+    padding: 0.5rem 0;
+
+    .drone-logo {
+        max-height: 60px;
+        height: auto;
+        width: auto;
+        max-width: 200px;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+}
+
+/* Mobile logo adjustment */
+@media (max-width: 768px) {
+    .navbar-brand.logo {
+        .drone-logo {
+            max-height: 45px;
+            max-width: 150px;
+        }
+    }
+}
+
+/* Navigation Menu Styling */
+.top_menu {
+    .nav-link {
+        color: $ica-dark;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+        position: relative;
+
+        &:hover {
+            color: $ica-primary;
+        }
+
+        // Active menu item
+        &.active {
+            color: $ica-primary;
+            font-weight: 600;
+        }
+
+        // Underline effect on hover
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: $ica-primary;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        &:hover::after,
+        &.active::after {
+            width: 80%;
+        }
+    }
+}
+
+// Sticky header styling
+header {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease;
+
+    &.scrolled {
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.ica-header {
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    .navbar {
+        padding: 1rem 0;
+    }
+
+    .ica-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: $ica-primary;
+        background: linear-gradient(135deg, $ica-primary, $ica-secondary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .nav-link {
+        color: $ica-dark;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: $ica-primary;
+        }
+    }
+}
+
+/* ========================================
+   Footer Styles
+   ======================================== */
+.ica-footer {
+    background: $ica-dark;
+    color: #ffffff;
+    margin-top: auto;
+
+    .footer-heading {
+        color: #ffffff;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+    }
+
+    .footer-text {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+    }
+
+    .footer-links {
+        li {
+            margin-bottom: 0.5rem;
+
+            a {
+                color: rgba(255, 255, 255, 0.8);
+                text-decoration: none;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: $ica-primary;
+                }
+            }
+        }
+    }
+
+    .footer-contact {
+        li {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.5rem;
+
+            i {
+                margin-right: 0.5rem;
+                color: $ica-primary;
+            }
+        }
+    }
+
+    .footer-copyright {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+    }
+}
+
+/* ========================================
+   Homepage Styles
+   ======================================== */
+
+/* Hero Section */
+.ica-hero {
+    background: linear-gradient(135deg, #0ea5e9 0%, #1e40af 100%);
+    color: #ffffff;
+    padding: 4rem 0;
+
+    .hero-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+
+        i {
+            margin-right: 0.5rem;
+            color: #fbbf24;
+        }
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
+
+    .hero-buttons {
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+
+            i {
+                margin-right: 0.5rem;
+            }
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: $ica-primary;
+            border: none;
+
+            &:hover {
+                background: $ica-light;
+                transform: translateY(-2px);
+            }
+        }
+
+        .btn-outline-primary {
+            border: 2px solid #ffffff;
+            color: #ffffff;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+    }
+
+    .hero-image {
+        .placeholder-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            padding: 4rem 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+
+            i {
+                opacity: 0.5;
+            }
+
+            p {
+                margin-top: 1rem;
+                font-size: 1.1rem;
+            }
+        }
+    }
+}
+
+/* Why Choose Us Section */
+.why-choose-us {
+    .why-card {
+        padding: 2rem 1rem;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+
+        .why-icon {
+            color: $ica-primary;
+            margin-bottom: 1.5rem;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: $ica-dark;
+        }
+
+        p {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+    }
+}
+
+/* Stats Section */
+.stats-section {
+    background: linear-gradient(135deg, $ica-primary, $ica-secondary);
+    color: #ffffff;
+
+    .stat-box {
+        padding: 2rem 1rem;
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+    }
+}
+
+/* Features Section */
+.ica-features {
+    background: #ffffff;
+
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: $ica-dark;
+        margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+        color: #6b7280;
+    }
+
+    .feature-card {
+        background: $ica-light;
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            color: $ica-primary;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: $ica-dark;
+        }
+
+        .feature-description {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+    }
+}
+
+/* CTA Section */
+.ica-cta {
+    background: linear-gradient(135deg, $ica-primary, $ica-secondary);
+    color: #ffffff;
+
+    .cta-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .cta-subtitle {
+        font-size: 1.2rem;
+        opacity: 0.9;
+    }
+
+    .btn-light {
+        background: #ffffff;
+        color: $ica-primary;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+
+        &:hover {
+            background: $ica-light;
+        }
+    }
+}
+
+/* Portfolio Section */
+.portfolio-section {
+    .portfolio-card {
+        background: #ffffff;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-image {
+            .placeholder-portfolio {
+                background: linear-gradient(135deg, $ica-light 0%, #e0e7ff 100%);
+                padding: 4rem 2rem;
+                text-align: center;
+                color: $ica-primary;
+                min-height: 250px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                i {
+                    margin-bottom: 0.5rem;
+                }
+
+                p {
+                    font-weight: 500;
+                    color: $ica-secondary;
+                }
+            }
+        }
+
+        .portfolio-info {
+            padding: 1.5rem;
+
+            h4 {
+                font-size: 1.3rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+                color: $ica-dark;
+            }
+
+            p {
+                color: #6b7280;
+                margin: 0;
+            }
+        }
+    }
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    background: #ffffff;
+
+    .testimonial-card {
+        background: $ica-light;
+        border-radius: 1rem;
+        padding: 2rem;
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-rating {
+            color: #fbbf24;
+
+            i {
+                margin-right: 0.25rem;
+            }
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: $ica-dark;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+
+            strong {
+                color: $ica-dark;
+                font-weight: 600;
+                margin-bottom: 0.25rem;
+            }
+
+            span {
+                color: #6b7280;
+                font-size: 0.9rem;
+            }
+        }
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .ica-hero {
+        .hero-title {
+            font-size: 2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+        }
+    }
+
+    .ica-features {
+        .section-title {
+            font-size: 2rem;
+        }
+    }
+
+    .ica-cta {
+        .cta-title {
+            font-size: 1.8rem;
+        }
+    }
+}
+
+/* Services Page Styles */
+.services-hero {
+    h1 {
+        color: $ica-dark;
+    }
+}
+
+.all-services {
+    .service-image-placeholder {
+        background: linear-gradient(135deg, $ica-light 0%, #e0e7ff 100%);
+        border-radius: 1rem;
+        padding: 4rem 2rem;
+        text-align: center;
+        color: $ica-primary;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            opacity: 0.7;
+        }
+
+        p {
+            font-weight: 500;
+            color: $ica-secondary;
+            margin: 0;
+        }
+    }
+
+    h2 {
+        color: $ica-dark;
+        font-weight: 700;
+
+        i {
+            margin-right: 0.5rem;
+        }
+    }
+
+    .service-features {
+        list-style: none;
+        padding-left: 0;
+
+        li {
+            padding: 0.5rem 0;
+            font-size: 1.05rem;
+
+            i {
+                margin-right: 0.75rem;
+            }
+        }
+    }
+}
+
+/* Portfolio Page Styles */
+.portfolio-hero {
+    h1 {
+        color: $ica-dark;
+    }
+}
+
+.all-portfolio {
+    h2 {
+        color: $ica-dark;
+        font-weight: 700;
+
+        i {
+            margin-right: 0.5rem;
+        }
+    }
+
+    .portfolio-card {
+        background: #ffffff;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-image {
+            .placeholder-portfolio {
+                background: linear-gradient(135deg, $ica-light 0%, #e0e7ff 100%);
+                padding: 4rem 2rem;
+                text-align: center;
+                color: $ica-primary;
+                min-height: 250px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                i {
+                    margin-bottom: 0.5rem;
+                }
+
+                p {
+                    font-weight: 500;
+                    color: $ica-secondary;
+                    margin: 0;
+                }
+            }
+        }
+
+        .portfolio-info {
+            padding: 1.5rem;
+
+            h4 {
+                font-size: 1.3rem;
+                font-weight: 600;
+                margin-bottom: 0.75rem;
+                color: $ica-dark;
+            }
+
+            p {
+                color: #6b7280;
+                margin-bottom: 1rem;
+                line-height: 1.6;
+            }
+
+            .badge {
+                margin-right: 0.5rem;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+    }
+}
+
+/* Contact Page Styles */
+.contact-hero {
+    h1 {
+        color: $ica-dark;
+    }
+}
+
+.contact-content {
+    .contact-info-box {
+        h2 {
+            color: $ica-dark;
+            font-weight: 700;
+
+            i {
+                margin-right: 0.5rem;
+            }
+        }
+
+        .contact-details {
+            .contact-detail-item {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 2rem;
+                padding: 1.5rem;
+                background: $ica-light;
+                border-radius: 0.5rem;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                }
+
+                .contact-icon {
+                    margin-right: 1.5rem;
+                    min-width: 50px;
+                }
+
+                .contact-text {
+                    h5 {
+                        color: $ica-dark;
+                        font-weight: 600;
+                        margin-bottom: 0.5rem;
+                        font-size: 1.1rem;
+                    }
+
+                    a {
+                        color: $ica-primary;
+                        text-decoration: none;
+                        font-weight: 500;
+                        transition: color 0.3s ease;
+
+                        &:hover {
+                            color: $ica-secondary;
+                        }
+                    }
+
+                    p {
+                        color: #6b7280;
+                        margin-bottom: 0.25rem;
+                        line-height: 1.5;
+                    }
+                }
+            }
+        }
+    }
+
+    .contact-form-box {
+        background: #ffffff;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        h2 {
+            color: $ica-dark;
+            font-weight: 700;
+
+            i {
+                margin-right: 0.5rem;
+            }
+        }
+
+        .form-label {
+            color: $ica-dark;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+            &:focus {
+                border-color: $ica-primary;
+                box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+            }
+        }
+
+        .btn-primary {
+            background: $ica-primary;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: background 0.3s ease, transform 0.3s ease;
+
+            &:hover {
+                background: $ica-secondary;
+                transform: translateY(-2px);
+            }
+        }
+    }
+}
+
+.contact-features {
+    .feature-box {
+        padding: 1.5rem;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+
+        h5 {
+            color: $ica-dark;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+}
+
+/* Utility Classes */
+.min-vh-50 {
+    min-height: 50vh;
+}

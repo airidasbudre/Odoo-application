@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Custom Homepage Page Record -->
+        <record id="homepage" model="website.page">
+            <field name="name">Home</field>
+            <field name="website_published" eval="True"/>
+            <field name="url">/</field>
+            <field name="view_id" ref="custom_homepage"/>
+            <field name="is_homepage" eval="True"/>
+        </record>
+    </data>
+</odoo>

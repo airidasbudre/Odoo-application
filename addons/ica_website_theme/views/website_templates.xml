@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Custom Homepage Template - Inherit and Replace Default Homepage -->
+    <template id="custom_homepage" name="Drone Services Homepage" inherit_id="website.homepage" customize_show="True" active="True">
+        <xpath expr="//div[@id='wrap']" position="replace">
+            <div id="wrap" class="oe_structure">
+                <!-- Hero Section -->
+                <section class="ica-hero">
+                    <div class="container">
+                        <div class="row align-items-center min-vh-50">
+                            <div class="col-lg-6">
+                                <div class="hero-badge mb-3">
+                                    <i class="fa fa-certificate"></i> FAA Certified &amp; Insured
+                                </div>
+                                <h1 class="hero-title">Professional Drone Services</h1>
+                                <p class="hero-subtitle">
+                                    Capture stunning aerial photography, cinematic videos, and precision 2D mapping
+                                    from the sky. Elevate your perspective with our expert drone solutions.
+                                </p>
+                                <div class="hero-buttons">
+                                    <a href="/contactus" class="btn btn-primary btn-lg me-2">
+                                        <i class="fa fa-paper-plane"></i> Get a Quote
+                                    </a>
+                                    <a href="/portfolio" class="btn btn-outline-primary btn-lg">
+                                        <i class="fa fa-play-circle"></i> View Portfolio
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="hero-image">
+                                    <!-- Placeholder for hero image -->
+                                    <div class="placeholder-box">
+                                        <i class="fa fa-camera fa-5x mb-3"></i>
+                                        <p>Add Your Stunning Aerial Photo Here</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Why Choose Us Section -->
+                <section class="why-choose-us py-5 bg-light">
+                    <div class="container">
+                        <div class="row text-center mb-5">
+                            <div class="col-12">
+                                <h2 class="section-title">Why Choose Our Drone Services</h2>
+                                <p class="section-subtitle">Professional aerial solutions backed by expertise and technology</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 mb-4">
+                                <div class="why-card text-center">
+                                    <div class="why-icon">
+                                        <i class="fa fa-shield fa-3x"></i>
+                                    </div>
+                                    <h4>FAA Certified</h4>
+                                    <p>Licensed and certified pilots with full insurance coverage</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-4">
+                                <div class="why-card text-center">
+                                    <div class="why-icon">
+                                        <i class="fa fa-trophy fa-3x"></i>
+                                    </div>
+                                    <h4>Award Winning</h4>
+                                    <p>Recognized for excellence in aerial photography and mapping</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-4">
+                                <div class="why-card text-center">
+                                    <div class="why-icon">
+                                        <i class="fa fa-cog fa-3x"></i>
+                                    </div>
+                                    <h4>Latest Technology</h4>
+                                    <p>State-of-the-art drones with 4K cameras and sensors</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-4">
+                                <div class="why-card text-center">
+                                    <div class="why-icon">
+                                        <i class="fa fa-clock-o fa-3x"></i>
+                                    </div>
+                                    <h4>Fast Turnaround</h4>
+                                    <p>Quick delivery of high-quality edited footage and data</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Stats Section -->
+                <section class="stats-section py-5">
+                    <div class="container">
+                        <div class="row text-center">
+                            <div class="col-md-3 col-sm-6 mb-4">
+                                <div class="stat-box">
+                                    <div class="stat-number">500+</div>
+                                    <div class="stat-label">Projects Completed</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-4">
+                                <div class="stat-box">
+                                    <div class="stat-number">1000+</div>
+                                    <div class="stat-label">Flight Hours</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-4">
+                                <div class="stat-box">
+                                    <div class="stat-number">98%</div>
+                                    <div class="stat-label">Client Satisfaction</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mb-4">
+                                <div class="stat-box">
+                                    <div class="stat-number">5 Years</div>
+                                    <div class="stat-label">Experience</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Services Section -->
+                <section class="ica-features py-5">
+                    <div class="container">
+                        <div class="row text-center mb-5">
+                            <div class="col-12">
+                                <h2 class="section-title">Our Services</h2>
+                                <p class="section-subtitle">Professional aerial solutions for every need</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fa fa-camera fa-3x"></i>
+                                    </div>
+                                    <h3 class="feature-title">Aerial Photography</h3>
+                                    <p class="feature-description">
+                                        Capture breathtaking high-resolution aerial photographs perfect for real estate,
+                                        events, construction progress, and marketing materials.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fa fa-video-camera fa-3x"></i>
+                                    </div>
+                                    <h3 class="feature-title">Aerial Videography</h3>
+                                    <p class="feature-description">
+                                        Professional cinematic drone videos with smooth stabilized footage
+                                        for commercials, documentaries, and promotional content.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fa fa-map fa-3x"></i>
+                                    </div>
+                                    <h3 class="feature-title">2D Mapping &amp; Orthophotos</h3>
+                                    <p class="feature-description">
+                                        Precision orthophoto mapping for surveying, agriculture, construction sites,
+                                        and land management with accurate measurements and GIS data.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Portfolio Section -->
+                <section class="portfolio-section py-5 bg-light">
+                    <div class="container">
+                        <div class="row text-center mb-5">
+                            <div class="col-12">
+                                <h2 class="section-title">Recent Projects</h2>
+                                <p class="section-subtitle">See our work in action</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-image">
+                                        <div class="placeholder-portfolio">
+                                            <i class="fa fa-image fa-3x"></i>
+                                            <p class="mt-2">Real Estate Photography</p>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-info">
+                                        <h4>Luxury Property Showcase</h4>
+                                        <p>Stunning aerial views of a 5-acre estate</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-image">
+                                        <div class="placeholder-portfolio">
+                                            <i class="fa fa-video-camera fa-3x"></i>
+                                            <p class="mt-2">Commercial Video</p>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-info">
+                                        <h4>Construction Progress</h4>
+                                        <p>Time-lapse of 6-month development project</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-image">
+                                        <div class="placeholder-portfolio">
+                                            <i class="fa fa-map-o fa-3x"></i>
+                                            <p class="mt-2">Mapping Project</p>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-info">
+                                        <h4>Agricultural Survey</h4>
+                                        <p>500-acre farm orthophoto mapping</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-center mt-4">
+                                <a href="/portfolio" class="btn btn-primary btn-lg">View Full Portfolio</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Testimonials Section -->
+                <section class="testimonials-section py-5">
+                    <div class="container">
+                        <div class="row text-center mb-5">
+                            <div class="col-12">
+                                <h2 class="section-title">What Our Clients Say</h2>
+                                <p class="section-subtitle">Trusted by businesses and professionals</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-rating mb-3">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <p class="testimonial-text">
+                                        "Outstanding aerial photography! The images helped us sell the property
+                                        within two weeks. Highly professional service."
+                                    </p>
+                                    <div class="testimonial-author">
+                                        <strong>Sarah Johnson</strong>
+                                        <span>Real Estate Agent</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-rating mb-3">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <p class="testimonial-text">
+                                        "The mapping data was incredibly accurate. Saved us thousands on our
+                                        construction project. Will definitely use again!"
+                                    </p>
+                                    <div class="testimonial-author">
+                                        <strong>Mike Roberts</strong>
+                                        <span>Construction Manager</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-rating mb-3">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <p class="testimonial-text">
+                                        "Amazing cinematic footage for our commercial. Fast turnaround and
+                                        excellent communication throughout the project."
+                                    </p>
+                                    <div class="testimonial-author">
+                                        <strong>Emily Chen</strong>
+                                        <span>Marketing Director</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="ica-cta py-5">
+                    <div class="container">
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <h2 class="cta-title">Ready to Take Flight?</h2>
+                                <p class="cta-subtitle mb-4">
+                                    Get professional aerial solutions for your project. Contact us for a free consultation and quote.
+                                </p>
+                                <a href="/contactus" class="btn btn-light btn-lg">Request a Quote</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+</odoo>

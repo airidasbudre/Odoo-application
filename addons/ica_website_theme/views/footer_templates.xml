@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Custom Footer Template -->
+    <template id="custom_footer" inherit_id="website.layout" name="ICA Custom Footer" active="True" customize_show="True">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="ica-footer">
+                <div class="container">
+                    <div class="row py-5">
+                        <!-- About Section -->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <h5 class="footer-heading">About Our Drone Services</h5>
+                            <p class="footer-text">
+                                Professional aerial photography, videography, and precision mapping services
+                                using state-of-the-art drone technology. Certified pilots, insured operations.
+                            </p>
+                        </div>
+
+                        <!-- Services -->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <h5 class="footer-heading">Our Services</h5>
+                            <ul class="footer-links list-unstyled">
+                                <li><a href="/">Aerial Photography</a></li>
+                                <li><a href="/page/videography">Aerial Videography</a></li>
+                                <li><a href="/page/mapping">2D Mapping &amp; Orthophotos</a></li>
+                                <li><a href="/page/portfolio">Portfolio</a></li>
+                                <li><a href="/contactus">Get a Quote</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div class="col-lg-4 col-md-12 mb-4">
+                            <h5 class="footer-heading">Contact Us</h5>
+                            <ul class="footer-contact list-unstyled">
+                                <li>
+                                    <i class="fa fa-envelope"></i> info@droneservices.com
+                                </li>
+                                <li>
+                                    <i class="fa fa-phone"></i> +370 647 48409
+                                </li>
+                                <li>
+                                    <i class="fa fa-map-marker"></i> Your City, Your Country
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Bar -->
+                    <div class="row border-top pt-3">
+                        <div class="col-12 text-center">
+                            <p class="footer-copyright mb-0">
+                                © 2025 Professional Drone Services. All rights reserved. | FAA Certified
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

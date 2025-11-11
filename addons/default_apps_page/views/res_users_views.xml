@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Action to show all installed apps -->
+    <record id="action_show_installed_apps" model="ir.actions.act_window">
+        <field name="name">My Apps</field>
+        <field name="res_model">ir.module.module</field>
+        <field name="view_mode">kanban</field>
+        <field name="domain">[('state', '=', 'installed'), ('application', '=', True)]</field>
+        <field name="context">{'search_default_app': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Your Installed Applications
+            </p>
+            <p>
+                Click on an app to open it.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu item for easy access -->
+    <menuitem id="menu_installed_apps"
+              name="My Apps"
+              action="action_show_installed_apps"
+              web_icon="default_apps_page,static/description/icon.png"
+              sequence="1"/>
+</odoo>

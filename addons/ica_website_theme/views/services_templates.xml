@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Services Page Template -->
+    <template id="services_page" name="Drone Services Page">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure">
+
+                <!-- Services Hero -->
+                <section class="services-hero py-5 bg-light">
+                    <div class="container">
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <h1 class="display-4 fw-bold mb-4">Our Drone Services</h1>
+                                <p class="lead text-muted">
+                                    Professional aerial solutions for photography, videography, and precision mapping
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- All Services Section -->
+                <section class="all-services py-5">
+                    <div class="container">
+
+                        <!-- Aerial Photography -->
+                        <div class="row mb-5 align-items-center">
+                            <div class="col-md-6 mb-4">
+                                <div class="service-image-placeholder">
+                                    <i class="fa fa-camera fa-5x"></i>
+                                    <p class="mt-3">Aerial Photography Sample</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h2 class="mb-3">
+                                    <i class="fa fa-camera text-primary"></i> Aerial Photography
+                                </h2>
+                                <p class="lead">High-resolution aerial photographs from the sky</p>
+                                <ul class="service-features">
+                                    <li><i class="fa fa-check-circle text-success"></i> Real estate property showcases</li>
+                                    <li><i class="fa fa-check-circle text-success"></i> Construction progress documentation</li>
+                                    <li><i class="fa fa-check-circle text-success"></i> Event coverage from unique angles</li>
+                                    <li><i class="fa fa-check-circle text-success"></i> Marketing and promotional materials</li>
+                                    <li><i class="fa fa-check-circle text-success"></i> 4K+ resolution capabilities</li>
+                                </ul>
+                                <a href="/contactus" class="btn btn-primary mt-3">Get a Quote</a>
+                            </div>
+                        </div>
+
+                        <!-- Aerial Videography -->
+                        <div class="row mb-5 align-items-center flex-row-reverse">
+                            <div class="col-md-6 mb-4">
+                                <div class="service-image-placeholder">
+                                    <i class="fa fa-video-camera fa-5x"></i>
+                                    <p class="mt-3">Aerial Videography Sample</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h2 class="mb-3">
+                                    <i class="fa fa-video-camera text-primary"></i> Aerial Videography
+                                </h2>
+                                <p class="lead">Professional cinematic drone videos</p>
+                                <ul class="service-features">
+                                    <li><i class="fa fa-check-circle text-success"></i> Commercial and promotional videos</li>
+                                    <li><i class="fa fa-check-circle text-success"></i> Documentary and film production</li>
+                                    <li><i class="fa fa-check-circle text-success"></i> Smooth stabilized footage</li>
+                                    <li><i class="fa fa-check-circle text-success"></i> Time-lapse sequences</li>
+                                    <li><i class="fa fa-check-circle text-success"></i> 4K video recording</li>
+                                </ul>
+                                <a href="/contactus" class="btn btn-primary mt-3">Get a Quote</a>
+                            </div>
+                        </div>
+
+                        <!-- 2D Mapping & Orthophotos -->
+                        <div class="row mb-5 align-items-center">
+                            <div class="col-md-6 mb-4">
+                                <div class="service-image-placeholder">
+                                    <i class="fa fa-map fa-5x"></i>
+                                    <p class="mt-3">Mapping &amp; Orthophotos Sample</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h2 class="mb-3">
+                                    <i class="fa fa-map text-primary"></i> 2D Mapping &amp; Orthophotos
+                                </h2>
+                                <p class="lead">Precision aerial mapping and surveying</p>
+                                <ul class="service-features">
+                                    <li><i class="fa fa-check-circle text-success"></i> Orthophoto generation for surveying</li>
+                                    <li><i class="fa fa-check-circle text-success"></i> Agricultural field analysis</li>
+                                    <li><i class="fa fa-check-circle text-success"></i> Construction site mapping</li>
+                                    <li><i class="fa fa-check-circle text-success"></i> Land management and GIS data</li>
+                                    <li><i class="fa fa-check-circle text-success"></i> Accurate measurements and analysis</li>
+                                </ul>
+                                <a href="/contactus" class="btn btn-primary mt-3">Get a Quote</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="ica-cta py-5">
+                    <div class="container">
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <h2 class="cta-title">Ready to Get Started?</h2>
+                                <p class="cta-subtitle mb-4">
+                                    Contact us today for a free consultation and custom quote for your project.
+                                </p>
+                                <a href="/contactus" class="btn btn-light btn-lg">Request a Quote</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </t>
+    </template>
+
+    <!-- Create Services Page Record -->
+    <record id="services_page_record" model="website.page">
+        <field name="name">Services</field>
+        <field name="is_published" eval="True"/>
+        <field name="url">/services</field>
+        <field name="view_id" ref="services_page"/>
+        <field name="track" eval="True"/>
+    </record>
+
+</odoo>

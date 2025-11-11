@@ -1,0 +1,161 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database - Optimized for t3.small (2GB RAM)
+  db:
+    image: postgres:15
+    container_name: odoo-db
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo123
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+    networks:
+      - odoo-network
+    restart: unless-stopped
+    # Memory limits for t3.small
+    mem_limit: 512m
+    mem_reservation: 256m
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Odoo 18 - Optimized for t3.small (2GB RAM, 2 vCPU)
+  odoo:
+    image: odoo:18.0
+    container_name: odoo-app
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8069:8069"
+      - "8072:8072"
+    environment:
+      - HOST=db
+      - PORT=5432
+      - USER=odoo
+      - PASSWORD=odoo123
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./addons:/mnt/extra-addons
+    networks:
+      - odoo-network
+    restart: unless-stopped
+    # Memory limits for t3.small
+    mem_limit: 1280m
+    mem_reservation: 768m
+    # 2 workers for better performance with 2 vCPUs
+    command: ["--workers=2", "--max-cron-threads=1", "--limit-memory-hard=1342177280", "--limit-memory-soft=1073741824"]
+
+  # Prometheus - Metrics Collection
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitoring/prometheus/alerts:/etc/prometheus/alerts
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    ports:
+      - "9090:9090"
+    networks:
+      - odoo-network
+    restart: unless-stopped
+    mem_limit: 256m
+    mem_reservation: 128m
+
+  # Grafana - Monitoring Dashboards
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
+    ports:
+      - "3000:3000"
+    networks:
+      - odoo-network
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+    mem_limit: 256m
+    mem_reservation: 128m
+
+  # PostgreSQL Exporter for Prometheus
+  postgres-exporter:
+    image: prometheuscommunity/postgres-exporter:latest
+    container_name: postgres-exporter
+    environment:
+      - DATA_SOURCE_NAME=postgresql://odoo:odoo123@db:5432/postgres?sslmode=disable
+    ports:
+      - "9187:9187"
+    networks:
+      - odoo-network
+    restart: unless-stopped
+    depends_on:
+      - db
+    mem_limit: 128m
+    mem_reservation: 64m
+
+  # Node Exporter - System Metrics
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    command:
+      - '--path.rootfs=/host'
+    volumes:
+      - '/:/host:ro,rslave'
+    ports:
+      - "9100:9100"
+    networks:
+      - odoo-network
+    restart: unless-stopped
+    mem_limit: 128m
+    mem_reservation: 64m
+
+  # Alertmanager - Alert Notifications
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: alertmanager
+    volumes:
+      - ./monitoring/alertmanager:/etc/alertmanager
+      - alertmanager-data:/alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+      - '--storage.path=/alertmanager'
+    ports:
+      - "9093:9093"
+    networks:
+      - odoo-network
+    restart: unless-stopped
+    mem_limit: 128m
+    mem_reservation: 64m
+
+volumes:
+  odoo-web-data:
+    driver: local
+  odoo-db-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+  alertmanager-data:
+    driver: local
+
+networks:
+  odoo-network:
+    driver: bridge
