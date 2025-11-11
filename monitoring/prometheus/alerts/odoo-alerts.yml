@@ -1,0 +1,36 @@
+groups:
+  - name: odoo_alerts
+    interval: 30s
+    rules:
+      # Odoo Container Down (based on database connections dropping)
+      - alert: OdooApplicationIssue
+        expr: absent(pg_stat_database_numbackends{datname="postgres"}) or pg_stat_database_numbackends{datname="postgres"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: application
+        annotations:
+          summary: "Odoo application may be down"
+          description: "No database connections detected from Odoo"
+
+      # High Query Rate
+      - alert: HighQueryRate
+        expr: rate(pg_stat_database_xact_commit{datname="postgres"}[5m]) > 1000
+        for: 10m
+        labels:
+          severity: info
+          component: application
+        annotations:
+          summary: "High database query rate"
+          description: "Database is processing {{ $value }} transactions/sec"
+
+      # Slow Queries (based on active connections staying constant)
+      - alert: PossibleSlowQueries
+        expr: pg_stat_activity_count{state="active"} > 10
+        for: 15m
+        labels:
+          severity: warning
+          component: application
+        annotations:
+          summary: "Possible slow queries detected"
+          description: "{{ $value }} queries have been active for >15 minutes"
