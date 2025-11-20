@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-config
+  namespace: odoo-production
+  labels:
+    app: alertmanager
+    tier: monitoring
+data:
+  alertmanager.yml: |
+    global:
+      resolve_timeout: 5m
+
+    route:
+      receiver: 'telegram-receiver'
+      group_by: ['alertname', 'cluster', 'service']
+      group_wait: 10s
+      group_interval: 10s
+      repeat_interval: 12h
+      routes:
+        - match:
+            severity: critical
+          receiver: 'telegram-receiver'
+          group_wait: 0s
+          repeat_interval: 5m
+        - match:
+            severity: warning
+          receiver: 'telegram-receiver'
+          repeat_interval: 1h
+        - match:
+            severity: info
+          receiver: 'telegram-receiver'
+          repeat_interval: 24h
+
+    receivers:
+      - name: 'telegram-receiver'
+        telegram_configs:
+          - bot_token: '8549606640:AAFeq8nCCFTngsz_BWwDZLIthEkPZLXffpA'
+            chat_id: 5033985200
+            parse_mode: 'Markdown'
+            message: |
+              {{ if eq .Status "firing" }}🚨{{ else }}✅{{ end }} *{{ .GroupLabels.alertname }}*
+
+              {{ range .Alerts }}
+              *Severity:* {{ .Labels.severity }}
+              *Summary:* {{ .Annotations.summary }}
+              *Description:* {{ .Annotations.description }}
+              *Status:* {{ .Status }}
+              {{ end }}
+
+    inhibit_rules:
+      - source_match:
+          severity: 'critical'
+        target_match:
+          severity: 'warning'
+        equal: ['alertname', 'instance']

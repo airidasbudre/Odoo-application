@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-exporter
+  namespace: odoo-production
+  labels:
+    app: node-exporter
+    tier: monitoring
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+  - port: 9100
+    targetPort: 9100
+    protocol: TCP
+    name: metrics
+  selector:
+    app: node-exporter
+    tier: monitoring

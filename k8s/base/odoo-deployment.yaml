@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: odoo
+  namespace: odoo-production
+  labels:
+    app: odoo
+    tier: application
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: odoo
+      tier: application
+  template:
+    metadata:
+      labels:
+        app: odoo
+        tier: application
+    spec:
+      initContainers:
+      - name: wait-for-postgres
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nc -z postgresql 5432; do echo waiting for postgres; sleep 2; done;']
+      containers:
+      - name: odoo
+        image: odoo:18.0
+        ports:
+        - containerPort: 8069
+          name: http
+        - containerPort: 8072
+          name: longpolling
+        env:
+        - name: HOST
+          value: postgresql
+        - name: PORT
+          value: "5432"
+        - name: USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_USER
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        command:
+        - odoo
+        - --workers=2
+        - --max-cron-threads=1
+        - --limit-memory-hard=1342177280
+        - --limit-memory-soft=1073741824
+        volumeMounts:
+        - name: odoo-storage
+          mountPath: /var/lib/odoo
+        resources:
+          requests:
+            memory: "768Mi"
+            cpu: "500m"
+          limits:
+            memory: "1280Mi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /web/health
+            port: 8069
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /web/health
+            port: 8069
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+      volumes:
+      - name: odoo-storage
+        persistentVolumeClaim:
+          claimName: odoo-pvc

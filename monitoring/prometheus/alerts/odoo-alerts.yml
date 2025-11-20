@@ -4,7 +4,7 @@ groups:
     rules:
       # Odoo Container Down (based on database connections dropping)
       - alert: OdooApplicationIssue
-        expr: absent(pg_stat_database_numbackends{datname="postgres"}) or pg_stat_database_numbackends{datname="postgres"} == 0
+        expr: absent(pg_stat_database_numbackends{datname="odoo_db"}) or pg_stat_database_numbackends{datname="odoo_db"} == 0
         for: 2m
         labels:
           severity: critical
@@ -15,7 +15,7 @@ groups:
 
       # High Query Rate
       - alert: HighQueryRate
-        expr: rate(pg_stat_database_xact_commit{datname="postgres"}[5m]) > 1000
+        expr: rate(pg_stat_database_xact_commit{datname="odoo_db"}[5m]) > 1000
         for: 10m
         labels:
           severity: info
