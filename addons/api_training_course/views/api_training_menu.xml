@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Blog Post Views -->
+    <record id="view_api_blog_post_tree" model="ir.ui.view">
+        <field name="name">api.blog.post.tree</field>
+        <field name="model">api.blog.post</field>
+        <field name="arch" type="xml">
+            <list string="Blog Posts">
+                <field name="title"/>
+                <field name="author_name"/>
+                <field name="status"/>
+                <field name="published_date"/>
+                <field name="view_count"/>
+                <field name="like_count"/>
+                <field name="is_featured"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_api_blog_post_form" model="ir.ui.view">
+        <field name="name">api.blog.post.form</field>
+        <field name="model">api.blog.post</field>
+        <field name="arch" type="xml">
+            <form string="Blog Post">
+                <header>
+                    <button name="action_publish" string="Publish" type="object" class="oe_highlight" invisible="status == 'published'"/>
+                    <button name="action_archive_post" string="Archive" type="object" invisible="status == 'archived'"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="title"/>
+                            <field name="slug"/>
+                            <field name="author_id"/>
+                            <field name="published_date"/>
+                        </group>
+                        <group>
+                            <field name="is_featured"/>
+                            <field name="tags"/>
+                            <field name="reading_time_minutes"/>
+                            <field name="view_count"/>
+                            <field name="like_count"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Content">
+                            <field name="content" widget="html"/>
+                        </page>
+                        <page string="Excerpt">
+                            <field name="excerpt"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_api_blog_post" model="ir.actions.act_window">
+        <field name="name">Blog Posts</field>
+        <field name="res_model">api.blog.post</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Task Views -->
+    <record id="view_api_task_tree" model="ir.ui.view">
+        <field name="name">api.task.tree</field>
+        <field name="model">api.task</field>
+        <field name="arch" type="xml">
+            <list string="Tasks">
+                <field name="name"/>
+                <field name="assigned_to_name"/>
+                <field name="project_name"/>
+                <field name="status"/>
+                <field name="priority" widget="priority"/>
+                <field name="due_date"/>
+                <field name="is_overdue"/>
+                <field name="progress" widget="progressbar"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_api_task_form" model="ir.ui.view">
+        <field name="name">api.task.form</field>
+        <field name="model">api.task</field>
+        <field name="arch" type="xml">
+            <form string="Task">
+                <header>
+                    <button name="action_start" string="Start" type="object" class="oe_highlight" invisible="status != 'todo'"/>
+                    <button name="action_complete" string="Complete" type="object" class="oe_highlight" invisible="status == 'done'"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="status in ['done', 'cancelled']"/>
+                    <button name="action_reopen" string="Reopen" type="object" invisible="status not in ['done', 'cancelled']"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="assigned_to"/>
+                            <field name="created_by"/>
+                            <field name="project_name"/>
+                        </group>
+                        <group>
+                            <field name="priority" widget="priority"/>
+                            <field name="due_date"/>
+                            <field name="completed_date"/>
+                            <field name="is_overdue"/>
+                            <field name="days_until_due"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="estimated_hours"/>
+                            <field name="actual_hours"/>
+                        </group>
+                        <group>
+                            <field name="progress" widget="progressbar"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_api_task" model="ir.actions.act_window">
+        <field name="name">Tasks</field>
+        <field name="res_model">api.task</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- User Profile Views -->
+    <record id="view_api_user_profile_tree" model="ir.ui.view">
+        <field name="name">api.user.profile.tree</field>
+        <field name="model">api.user.profile</field>
+        <field name="arch" type="xml">
+            <list string="User Profiles">
+                <field name="display_name"/>
+                <field name="job_title"/>
+                <field name="company"/>
+                <field name="years_of_experience"/>
+                <field name="posts_count"/>
+                <field name="tasks_count"/>
+                <field name="profile_views"/>
+                <field name="is_verified"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_api_user_profile_form" model="ir.ui.view">
+        <field name="name">api.user.profile.form</field>
+        <field name="model">api.user.profile</field>
+        <field name="arch" type="xml">
+            <form string="User Profile">
+                <sheet>
+                    <field name="avatar" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1><field name="display_name"/></h1>
+                        <h2><field name="job_title" placeholder="Job Title"/></h2>
+                    </div>
+                    <group>
+                        <group string="Professional Info">
+                            <field name="user_id"/>
+                            <field name="company"/>
+                            <field name="years_of_experience"/>
+                            <field name="bio"/>
+                        </group>
+                        <group string="Contact">
+                            <field name="phone"/>
+                            <field name="website"/>
+                            <field name="city"/>
+                            <field name="country"/>
+                            <field name="timezone"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Social Media">
+                            <field name="linkedin_url"/>
+                            <field name="github_username"/>
+                            <field name="twitter_handle"/>
+                        </group>
+                        <group string="Skills &amp; Interests">
+                            <field name="skills"/>
+                            <field name="interests"/>
+                            <field name="preferred_language"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Preferences">
+                            <field name="email_notifications"/>
+                            <field name="newsletter_subscription"/>
+                        </group>
+                        <group string="Statistics">
+                            <field name="posts_count"/>
+                            <field name="tasks_count"/>
+                            <field name="profile_views"/>
+                            <field name="is_verified"/>
+                            <field name="is_active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Metadata">
+                            <field name="account_created"/>
+                            <field name="last_login"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_api_user_profile" model="ir.actions.act_window">
+        <field name="name">User Profiles</field>
+        <field name="res_model">api.user.profile</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_api_training_root"
+        name="API Training"
+        sequence="100"
+        web_icon="api_training_course,static/description/icon.png"/>
+
+    <menuitem id="menu_api_training_blog"
+        name="Blog Posts"
+        parent="menu_api_training_root"
+        action="action_api_blog_post"
+        sequence="10"/>
+
+    <menuitem id="menu_api_training_tasks"
+        name="Tasks"
+        parent="menu_api_training_root"
+        action="action_api_task"
+        sequence="20"/>
+
+    <menuitem id="menu_api_training_users"
+        name="User Profiles"
+        parent="menu_api_training_root"
+        action="action_api_user_profile"
+        sequence="30"/>
+</odoo>
