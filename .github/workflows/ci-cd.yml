@@ -43,7 +43,7 @@ jobs:
 
       - name: Validate docker-compose configuration
         run: |
-          docker-compose config
+          docker compose config
 
   build:
     name: Build Docker Images

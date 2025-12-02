@@ -5,15 +5,15 @@ global:
     cluster: 'odoo-production'
     environment: 'production'
 
-# Alertmanager configuration
-alerting:
-  alertmanagers:
-    - static_configs:
-        - targets: ['alertmanager:9093']
+# Alertmanager configuration (disabled - alertmanager removed)
+# alerting:
+#   alertmanagers:
+#     - static_configs:
+#         - targets: ['alertmanager:9093']
 
-# Rule files
-rule_files:
-  - "alerts/*.yml"
+# Rule files (disabled - no alert rules configured)
+# rule_files:
+#   - "alerts/*.yml"
 
 # Scrape configurations
 scrape_configs:

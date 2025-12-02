@@ -57,7 +57,6 @@ services:
     container_name: prometheus
     volumes:
       - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./monitoring/prometheus/alerts:/etc/prometheus/alerts
       - prometheus-data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
@@ -126,24 +125,6 @@ services:
     mem_limit: 128m
     mem_reservation: 64m
 
-  # Alertmanager - Alert Notifications
-  alertmanager:
-    image: prom/alertmanager:latest
-    container_name: alertmanager
-    volumes:
-      - ./monitoring/alertmanager:/etc/alertmanager
-      - alertmanager-data:/alertmanager
-    command:
-      - '--config.file=/etc/alertmanager/alertmanager.yml'
-      - '--storage.path=/alertmanager'
-    ports:
-      - "9093:9093"
-    networks:
-      - odoo-network
-    restart: unless-stopped
-    mem_limit: 128m
-    mem_reservation: 64m
-
 volumes:
   odoo-web-data:
     driver: local
@@ -152,8 +133,6 @@ volumes:
   prometheus-data:
     driver: local
   grafana-data:
-    driver: local
-  alertmanager-data:
     driver: local
 
 networks:
