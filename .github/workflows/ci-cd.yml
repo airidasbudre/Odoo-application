@@ -127,12 +127,58 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.STAGING_SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Create backup of current database
+        run: |
+          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.STAGING_SERVER_IP }} \
+            'docker exec postgres-db pg_dump -U odoo odoo > /backup/odoo-backup-$(date +%Y%m%d-%H%M%S).sql'
+
       - name: Deploy to staging server
         run: |
-          echo "Deploying to staging environment..."
-          # Add your deployment commands here
-          # Example: SSH to server and pull latest changes
-          # ssh user@staging-server 'cd /app && git pull && docker-compose up -d'
+          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.STAGING_SERVER_IP }} << 'ENDSSH'
+            set -e
+            cd /home/ubuntu
+
+            # Pull latest changes
+            git pull origin develop
+
+            # Pull latest Docker images
+            docker compose pull
+
+            # Stop services gracefully
+            docker compose down
+
+            # Start services with new images
+            docker compose up -d
+
+            # Wait for services to be healthy
+            sleep 30
+
+            # Check if Odoo is responding
+            curl -f http://localhost:8069/web/database/selector || exit 1
+          ENDSSH
+
+      - name: Verify deployment
+        run: |
+          sleep 10
+          curl -f https://staging.yourdomain.com/web/database/selector || exit 1
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
 
   deploy-production:
     name: Deploy to Production
@@ -147,11 +193,137 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.PRODUCTION_SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Pre-deployment health check
+        run: |
+          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+            # Check disk space (fail if > 85% full)
+            DISK_USAGE=$(df -h / | tail -1 | awk '{print $5}' | sed 's/%//')
+            if [ "$DISK_USAGE" -gt 85 ]; then
+              echo "❌ Error: Disk usage is ${DISK_USAGE}% (threshold: 85%)"
+              exit 1
+            fi
+            echo "✅ Disk usage: ${DISK_USAGE}%"
+
+            # Check if current services are running
+            if ! docker compose ps | grep -q "Up"; then
+              echo "❌ Error: Services are not running"
+              exit 1
+            fi
+            echo "✅ Services are running"
+          ENDSSH
+
+      - name: Create backup of production database
+        run: |
+          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
+            'docker exec postgres-db pg_dump -U odoo odoo | gzip > /home/ubuntu/backup-prod-$(date +%Y%m%d-%H%M%S).sql.gz'
+
       - name: Deploy to production server
         run: |
-          echo "Deploying to production environment..."
-          # Add your deployment commands here
-          # This should include your actual deployment strategy
+          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+            set -e
+            cd /home/ubuntu
+
+            echo "📝 Saving current commit for rollback..."
+            git rev-parse HEAD > .last_deploy_commit
+
+            echo "📥 Pulling latest code from main branch..."
+            git pull origin main
+
+            echo "🐳 Pulling latest Docker images..."
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml pull
+
+            echo "⏸️  Stopping services gracefully..."
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml down --timeout 30
+
+            echo "🚀 Starting services with new code..."
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+            echo "⏳ Waiting for services to initialize..."
+            sleep 45
+
+            echo "🏥 Running health checks..."
+            MAX_ATTEMPTS=12
+            ATTEMPT=0
+
+            while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+              if curl -f http://localhost:8069/web/database/selector 2>/dev/null; then
+                echo "✅ Odoo is responding (attempt $((ATTEMPT + 1)))"
+                exit 0
+              fi
+              ATTEMPT=$((ATTEMPT + 1))
+              echo "⏳ Waiting for Odoo... (attempt $ATTEMPT/$MAX_ATTEMPTS)"
+              sleep 10
+            done
+
+            echo "❌ Odoo failed to start after $MAX_ATTEMPTS attempts"
+            exit 1
+          ENDSSH
+
+      - name: Verify external access
+        run: |
+          echo "🌐 Verifying external access..."
+          sleep 10
+
+          MAX_ATTEMPTS=6
+          ATTEMPT=0
+
+          while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+            if curl -f http://${{ secrets.PRODUCTION_SERVER_IP }}:8069/web/database/selector 2>/dev/null; then
+              echo "✅ Production is accessible from external network"
+              exit 0
+            fi
+            ATTEMPT=$((ATTEMPT + 1))
+            echo "⏳ Verifying external access... (attempt $ATTEMPT/$MAX_ATTEMPTS)"
+            sleep 10
+          done
+
+          echo "❌ External access verification failed"
+          exit 1
+
+      - name: Cleanup old Docker resources
+        if: success()
+        run: |
+          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+            echo "🧹 Cleaning up old Docker images..."
+            docker image prune -af --filter "until=168h" || true
+            echo "✅ Cleanup complete"
+          ENDSSH
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
+
+      - name: Rollback on failure
+        if: failure()
+        run: |
+          echo "🔄 Deployment failed! Initiating rollback..."
+          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+            cd /home/ubuntu
+
+            if [ -f .last_deploy_commit ]; then
+              echo "📝 Restoring previous commit: $(cat .last_deploy_commit)"
+              git reset --hard $(cat .last_deploy_commit)
+            else
+              echo "⚠️  No previous commit found, trying HEAD~1"
+              git reset --hard HEAD~1
+            fi
+
+            echo "🐳 Restarting services with old code..."
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml down
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+            echo "✅ Rollback complete"
+          ENDSSH
+
+          # Clean up SSH key even after rollback
+          rm -f ~/.ssh/deploy_key
 
   notify:
     name: Notification
