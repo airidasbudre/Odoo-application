@@ -287,19 +287,6 @@ jobs:
           echo "❌ External access verification failed"
           exit 1
 
-      - name: Cleanup old Docker resources
-        if: success()
-        run: |
-          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
-            echo "🧹 Cleaning up old Docker images..."
-            docker image prune -af --filter "until=168h" || true
-            echo "✅ Cleanup complete"
-          ENDSSH
-
-      - name: Cleanup SSH key
-        if: always()
-        run: rm -f ~/.ssh/deploy_key
-
       - name: Rollback on failure
         if: failure()
         run: |
@@ -322,8 +309,18 @@ jobs:
             echo "✅ Rollback complete"
           ENDSSH
 
-          # Clean up SSH key even after rollback
-          rm -f ~/.ssh/deploy_key
+      - name: Cleanup old Docker resources
+        if: success()
+        run: |
+          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+            echo "🧹 Cleaning up old Docker images..."
+            docker image prune -af --filter "until=168h" || true
+            echo "✅ Cleanup complete"
+          ENDSSH
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
 
   notify:
     name: Notification
