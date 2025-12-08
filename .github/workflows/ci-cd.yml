@@ -139,10 +139,8 @@ jobs:
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
 
-          # Write SSH key directly (GitHub handles multi-line secrets correctly)
-          cat > ~/.ssh/deploy_key << 'EOF'
-          ${{ secrets.SSH_PRIVATE_KEY }}
-          EOF
+          # Write SSH key with proper formatting
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
           # Add SSH config
@@ -222,10 +220,8 @@ jobs:
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
 
-          # Write SSH key directly (GitHub handles multi-line secrets correctly)
-          cat > ~/.ssh/deploy_key << 'EOF'
-          ${{ secrets.SSH_PRIVATE_KEY }}
-          EOF
+          # Write SSH key with proper formatting
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
           # Add SSH config for better connection handling
