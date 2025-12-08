@@ -134,43 +134,24 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Setup SSH key
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Configure SSH
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-
-          # Write SSH key with proper formatting
-          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-
-          # Add SSH config
-          cat > ~/.ssh/config << 'EOF'
-          Host *
-            StrictHostKeyChecking accept-new
-            ServerAliveInterval 60
-            ServerAliveCountMax 10
-            ConnectTimeout 30
-          EOF
-          chmod 600 ~/.ssh/config
-
-          # Get host keys
-          ssh-keyscan -H ${{ secrets.STAGING_SERVER_IP }} >> ~/.ssh/known_hosts 2>&1 || echo "Warning: ssh-keyscan failed"
-          chmod 644 ~/.ssh/known_hosts
-
-      - name: Verify SSH key
-        run: |
-          echo "Checking SSH key format..."
-          head -n 1 ~/.ssh/deploy_key | grep -q "BEGIN.*PRIVATE KEY" || (echo "Error: Invalid SSH key format" && exit 1)
-          echo "SSH key format is valid"
+          ssh-keyscan -H ${{ secrets.STAGING_SERVER_IP }} >> ~/.ssh/known_hosts 2>&1
 
       - name: Create backup of current database
         run: |
-          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.STAGING_SERVER_IP }} \
-            'docker exec postgres-db pg_dump -U odoo odoo > /backup/odoo-backup-$(date +%Y%m%d-%H%M%S).sql'
+          ssh ubuntu@${{ secrets.STAGING_SERVER_IP }} 'docker exec postgres-db pg_dump -U odoo odoo > /backup/odoo-backup-$(date +%Y%m%d-%H%M%S).sql'
 
       - name: Deploy to staging server
         run: |
-          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.STAGING_SERVER_IP }} << 'ENDSSH'
+          ssh ubuntu@${{ secrets.STAGING_SERVER_IP }} << 'ENDSSH'
             set -e
             cd /home/ubuntu
 
@@ -198,10 +179,6 @@ jobs:
           sleep 10
           curl -f https://staging.yourdomain.com/web/database/selector || exit 1
 
-      - name: Cleanup SSH key
-        if: always()
-        run: rm -f ~/.ssh/deploy_key
-
   deploy-production:
     name: Deploy to Production
     runs-on: ubuntu-latest
@@ -215,53 +192,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup SSH key
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Configure SSH
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
+          ssh-keyscan -H ${{ secrets.PRODUCTION_SERVER_IP }} >> ~/.ssh/known_hosts 2>&1
 
-          # Write SSH key with proper formatting
-          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-
-          # Add SSH config for better connection handling
-          cat > ~/.ssh/config << 'EOF'
-          Host *
-            StrictHostKeyChecking accept-new
-            ServerAliveInterval 60
-            ServerAliveCountMax 10
-            ConnectTimeout 30
-          EOF
-          chmod 600 ~/.ssh/config
-
-          # Get host keys
-          ssh-keyscan -H ${{ secrets.PRODUCTION_SERVER_IP }} >> ~/.ssh/known_hosts 2>&1 || echo "Warning: ssh-keyscan failed"
-          chmod 644 ~/.ssh/known_hosts
-
-      - name: Verify SSH key and connection
+      - name: Test SSH connection
         run: |
-          echo "Checking SSH key format..."
-          if ! head -n 1 ~/.ssh/deploy_key | grep -q "BEGIN.*PRIVATE KEY"; then
-            echo "❌ Error: Invalid SSH key format"
-            echo "First line of key:"
-            head -n 1 ~/.ssh/deploy_key
-            exit 1
-          fi
-          echo "✅ SSH key format is valid"
-
           echo "Testing SSH connection..."
-          if ! ssh -i ~/.ssh/deploy_key -o BatchMode=yes -o ConnectTimeout=10 ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} "echo '✅ SSH connection successful'"; then
-            echo "❌ SSH connection failed"
-            echo "Debugging information:"
-            echo "  - Target: ubuntu@${{ secrets.PRODUCTION_SERVER_IP }}"
-            echo "  - Attempting verbose connection..."
-            ssh -vvv -i ~/.ssh/deploy_key -o BatchMode=yes -o ConnectTimeout=10 ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} "exit" 2>&1 || true
-            exit 1
-          fi
+          ssh -o BatchMode=yes -o ConnectTimeout=10 ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} "echo '✅ SSH connection successful'"
 
       - name: Pre-deployment health check
         run: |
-          ssh -i ~/.ssh/deploy_key -o BatchMode=yes -o ConnectTimeout=30 ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+          ssh -o BatchMode=yes -o ConnectTimeout=30 ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
             # Check disk space (fail if > 85% full)
             DISK_USAGE=$(df -h / | tail -1 | awk '{print $5}' | sed 's/%//')
             if [ "$DISK_USAGE" -gt 85 ]; then
@@ -280,12 +229,12 @@ jobs:
 
       - name: Create backup of production database
         run: |
-          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
+          ssh  ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
             'docker exec postgres-db pg_dump -U odoo odoo | gzip > /home/ubuntu/backup-prod-$(date +%Y%m%d-%H%M%S).sql.gz'
 
       - name: Deploy to production server
         run: |
-          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+          ssh  ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
             set -e
             cd /home/ubuntu
 
@@ -350,7 +299,7 @@ jobs:
         if: failure()
         run: |
           echo "🔄 Deployment failed! Initiating rollback..."
-          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+          ssh  ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
             cd /home/ubuntu
 
             if [ -f .last_deploy_commit ]; then
@@ -371,15 +320,11 @@ jobs:
       - name: Cleanup old Docker resources
         if: success()
         run: |
-          ssh -i ~/.ssh/deploy_key ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+          ssh  ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
             echo "🧹 Cleaning up old Docker images..."
             docker image prune -af --filter "until=168h" || true
             echo "✅ Cleanup complete"
           ENDSSH
-
-      - name: Cleanup SSH key
-        if: always()
-        run: rm -f ~/.ssh/deploy_key
 
   notify:
     name: Notification
