@@ -137,9 +137,16 @@ jobs:
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/deploy_key
+          echo "" >> ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H ${{ secrets.STAGING_SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Verify SSH key
+        run: |
+          echo "Checking SSH key format..."
+          head -n 1 ~/.ssh/deploy_key | grep -q "BEGIN.*PRIVATE KEY" || (echo "Error: Invalid SSH key format" && exit 1)
+          echo "SSH key format is valid"
 
       - name: Create backup of current database
         run: |
@@ -196,9 +203,16 @@ jobs:
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/deploy_key
+          echo "" >> ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H ${{ secrets.PRODUCTION_SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Verify SSH key
+        run: |
+          echo "Checking SSH key format..."
+          head -n 1 ~/.ssh/deploy_key | grep -q "BEGIN.*PRIVATE KEY" || (echo "Error: Invalid SSH key format" && exit 1)
+          echo "SSH key format is valid"
 
       - name: Pre-deployment health check
         run: |
