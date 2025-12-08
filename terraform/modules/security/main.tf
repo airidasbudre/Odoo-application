@@ -4,13 +4,22 @@ resource "aws_security_group" "ec2" {
   description = "Security group for Odoo EC2 instance"
   vpc_id      = var.vpc_id
 
-  # SSH access
+  # SSH access from my IP
   ingress {
     description = "SSH from my IP"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = [var.my_ip]
+  }
+
+  # SSH access from GitHub Actions
+  ingress {
+    description = "SSH from GitHub Actions"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # GitHub Actions IPs change frequently
   }
 
   # HTTP access for Odoo
