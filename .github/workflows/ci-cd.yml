@@ -137,10 +137,25 @@ jobs:
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/deploy_key
-          echo "" >> ~/.ssh/deploy_key
+          chmod 700 ~/.ssh
+
+          # Decode base64 key and save it
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H ${{ secrets.STAGING_SERVER_IP }} >> ~/.ssh/known_hosts
+
+          # Add SSH config
+          cat > ~/.ssh/config << 'EOF'
+          Host *
+            StrictHostKeyChecking accept-new
+            ServerAliveInterval 60
+            ServerAliveCountMax 10
+            ConnectTimeout 30
+          EOF
+          chmod 600 ~/.ssh/config
+
+          # Get host keys
+          ssh-keyscan -H ${{ secrets.STAGING_SERVER_IP }} >> ~/.ssh/known_hosts 2>&1 || echo "Warning: ssh-keyscan failed"
+          chmod 644 ~/.ssh/known_hosts
 
       - name: Verify SSH key
         run: |
@@ -204,8 +219,9 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/deploy_key
-          echo "" >> ~/.ssh/deploy_key
+
+          # Decode base64 key and save it
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
           # Add SSH config for better connection handling
