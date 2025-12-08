@@ -139,8 +139,10 @@ jobs:
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
 
-          # Decode base64 key and save it
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > ~/.ssh/deploy_key
+          # Write SSH key directly (GitHub handles multi-line secrets correctly)
+          cat > ~/.ssh/deploy_key << 'EOF'
+          ${{ secrets.SSH_PRIVATE_KEY }}
+          EOF
           chmod 600 ~/.ssh/deploy_key
 
           # Add SSH config
@@ -220,8 +222,10 @@ jobs:
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
 
-          # Decode base64 key and save it
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > ~/.ssh/deploy_key
+          # Write SSH key directly (GitHub handles multi-line secrets correctly)
+          cat > ~/.ssh/deploy_key << 'EOF'
+          ${{ secrets.SSH_PRIVATE_KEY }}
+          EOF
           chmod 600 ~/.ssh/deploy_key
 
           # Add SSH config for better connection handling
