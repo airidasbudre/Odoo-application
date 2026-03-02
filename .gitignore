@@ -70,7 +70,35 @@ id_rsa*
 
 # Claude Code
 .claude.json
-.claude.json.backup
+.claude.json.backup*
+.claude/
+
+# Terraform
+terraform/.terraform/
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/terraform.tfvars
+
+# System / local config
+.aws/
+.ssh/
+.kube/
+.minikube/
+.docker/
+.nvm/
+.npm/
+.dotnet/
+.terraform.d/
+.vscode-server/
+.config/
+.cache/
+snap/
+.bash_history
+.bash_logout
+.bashrc
+.profile
+.sudo_as_admin_successful
+.wget-hsts
 
 # Migration scripts output
 odoo_migration_package.tar.gz
