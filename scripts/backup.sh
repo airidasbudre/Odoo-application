@@ -1,44 +1,39 @@
 #!/bin/bash
-
-# Backup Script for Odoo Application
-
 set -e
 
-BACKUP_DIR="./backups"
-TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+# ── Config ────────────────────────────────────────────────
+BUCKET="odoo-terraform-state-723977204493"
+REGION="eu-north-1"
+DB_CONTAINER="odoo-db"
+DB_USER="odoo"
 DB_NAME="postgres"
+KEEP_BACKUPS=30
+TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+BACKUP_KEY="backups/odoo-${TIMESTAMP}.sql.gz"
+LOG="/var/log/odoo-backup.log"
+# ──────────────────────────────────────────────────────────
 
-echo "======================================"
-echo "Odoo Backup - $TIMESTAMP"
-echo "======================================"
+echo "[$(date)] Starting backup..." | tee -a $LOG
 
-# Create backup directory
-mkdir -p $BACKUP_DIR
+# 1. Dump database from Docker container and upload directly to S3
+docker exec $DB_CONTAINER pg_dump -U $DB_USER $DB_NAME | \
+  gzip | \
+  aws s3 cp - s3://$BUCKET/$BACKUP_KEY --region $REGION
 
-# Backup PostgreSQL database
-echo "Backing up PostgreSQL database..."
-docker-compose exec -T db pg_dump -U odoo $DB_NAME | gzip > $BACKUP_DIR/odoo_db_$TIMESTAMP.sql.gz
+echo "[$(date)] Backup uploaded: $BACKUP_KEY" | tee -a $LOG
 
-# Backup Odoo filestore
-echo "Backing up Odoo filestore..."
-docker-compose exec odoo tar czf - /var/lib/odoo/filestore > $BACKUP_DIR/odoo_filestore_$TIMESTAMP.tar.gz
+# 2. Delete old backups — keep only the last $KEEP_BACKUPS
+BACKUP_COUNT=$(aws s3 ls s3://$BUCKET/backups/ --region $REGION | wc -l)
 
-# Backup custom addons
-echo "Backing up custom addons..."
-tar czf $BACKUP_DIR/odoo_addons_$TIMESTAMP.tar.gz addons/
+if [ "$BACKUP_COUNT" -gt "$KEEP_BACKUPS" ]; then
+  DELETE_COUNT=$((BACKUP_COUNT - KEEP_BACKUPS))
+  echo "[$(date)] Removing $DELETE_COUNT old backup(s)..." | tee -a $LOG
 
-# List backups
-echo ""
-echo "Backup completed successfully!"
-echo "Backup files:"
-ls -lh $BACKUP_DIR/*$TIMESTAMP*
+  aws s3 ls s3://$BUCKET/backups/ --region $REGION | \
+    sort | \
+    head -n $DELETE_COUNT | \
+    awk '{print $4}' | \
+    xargs -I{} aws s3 rm s3://$BUCKET/backups/{} --region $REGION
+fi
 
-# Clean old backups (keep last 7 days)
-echo ""
-echo "Cleaning old backups (keeping last 7 days)..."
-find $BACKUP_DIR -name "*.gz" -mtime +7 -delete
-
-echo ""
-echo "======================================"
-echo "Backup process completed!"
-echo "======================================"
+echo "[$(date)] Backup complete." | tee -a $LOG

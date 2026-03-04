@@ -99,6 +99,8 @@ snap/
 .profile
 .sudo_as_admin_successful
 .wget-hsts
+.lesshst
+.selected_editor
 
 # Migration scripts output
 odoo_migration_package.tar.gz
