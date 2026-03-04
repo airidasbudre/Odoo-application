@@ -93,6 +93,44 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+  migrate:
+    name: Migrate to New Server
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Backup database before migration
+        run: |
+          ssh ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
+            '/home/ubuntu/scripts/backup.sh'
+
+      - name: Apply new infrastructure
+        working-directory: terraform/
+        run: |
+          terraform init
+          terraform apply -auto-approve
+
+      - name: Restore latest backup on new server
+        run: |
+          LATEST=$(aws s3 ls s3://odoo-terraform-state/backups/ | sort | tail -1 | awk '{print $4}')
+          NEW_IP=$(terraform -chdir=terraform output -raw ec2_public_ip)
+          ssh ubuntu@$NEW_IP \
+            "aws s3 cp s3://odoo-terraform-state/backups/$LATEST - | gunzip | docker exec -i postgres-db psql -U odoo odoo"
+
+      - name: Start services on new server
+        run: |
+          NEW_IP=$(terraform -chdir=terraform output -raw ec2_public_ip)
+          ssh ubuntu@$NEW_IP 'cd /home/ubuntu && docker compose up -d'
+
   security-scan:
     name: Security Vulnerability Scan
     runs-on: ubuntu-latest
