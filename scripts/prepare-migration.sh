@@ -4,7 +4,7 @@ set -e
 # ── Config ────────────────────────────────────────────────
 BUCKET="odoo-terraform-state-723977204493"
 REGION="eu-north-1"
-LOG="/var/log/odoo-migration-prep.log"
+LOG="/home/ubuntu/migration-prep.log"
 # ──────────────────────────────────────────────────────────
 
 if [ -z "$1" ]; then
