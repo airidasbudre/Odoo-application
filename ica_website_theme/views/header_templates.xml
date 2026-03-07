@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Custom Header Styling - Add custom class to body for header styling -->
+    <template id="custom_header" inherit_id="website.layout" name="ICA Custom Header">
+        <xpath expr="//body" position="attributes">
+            <attribute name="class" add="ica-custom-theme" separator=" "/>
+        </xpath>
+    </template>
+
+    <!-- Replace Website Logo -->
+    <template id="custom_logo" inherit_id="website.option_header_brand_logo" name="Drone Services Logo">
+        <xpath expr="//span[@t-field='website.logo']" position="replace">
+            <img src="/ica_website_theme/static/src/img/logo.png" alt="Drone Services Logo" class="img-fluid drone-logo"/>
+        </xpath>
+    </template>
+</odoo>

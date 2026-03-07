@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Contact Page Template - Inherit and Replace Default Contact Page -->
+    <template id="custom_contactus" name="Drone Services Contact Page" inherit_id="website.contactus" customize_show="True" active="True">
+        <xpath expr="//div[@id='wrap']" position="replace">
+            <div id="wrap" class="oe_structure">
+
+                <!-- Contact Hero -->
+                <section class="contact-hero py-5 bg-light">
+                    <div class="container">
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <h1 class="display-4 fw-bold mb-4">Contact Us</h1>
+                                <p class="lead text-muted">
+                                    Get in touch with us for a free consultation and custom quote for your project
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Content Section -->
+                <section class="contact-content py-5">
+                    <div class="container">
+                        <div class="row">
+
+                            <!-- Contact Information -->
+                            <div class="col-lg-5 mb-4">
+                                <div class="contact-info-box">
+                                    <h2 class="mb-4">
+                                        <i class="fa fa-info-circle text-primary"></i> Get In Touch
+                                    </h2>
+                                    <p class="text-muted mb-4">
+                                        Have a project in mind? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                                    </p>
+
+                                    <div class="contact-details">
+                                        <!-- Email -->
+                                        <div class="contact-detail-item">
+                                            <div class="contact-icon">
+                                                <i class="fa fa-envelope fa-2x text-primary"></i>
+                                            </div>
+                                            <div class="contact-text">
+                                                <h5>Email</h5>
+                                                <a href="mailto:pakelkdrona@gmail.com">pakelkdrona@gmail.com</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Phone -->
+                                        <div class="contact-detail-item">
+                                            <div class="contact-icon">
+                                                <i class="fa fa-phone fa-2x text-primary"></i>
+                                            </div>
+                                            <div class="contact-text">
+                                                <h5>Phone</h5>
+                                                <a href="tel:+37064748409">+370 647 48409</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Business Hours -->
+                                        <div class="contact-detail-item">
+                                            <div class="contact-icon">
+                                                <i class="fa fa-clock-o fa-2x text-primary"></i>
+                                            </div>
+                                            <div class="contact-text">
+                                                <h5>Business Hours</h5>
+                                                <p class="mb-0">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                                                <p class="mb-0">Saturday: 10:00 AM - 4:00 PM</p>
+                                                <p class="mb-0">Sunday: Closed</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Contact Form -->
+                            <div class="col-lg-7">
+                                <div class="contact-form-box">
+                                    <h2 class="mb-4">
+                                        <i class="fa fa-paper-plane text-primary"></i> Send Us a Message
+                                    </h2>
+                                    <form action="/website/form/" method="post" class="s_website_form" data-model_name="mail.mail" data-success-mode="redirect" data-success_page="/contactus-thank-you">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="contact_name" class="form-label">Your Name <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="contact_name" name="name" required="required" placeholder="John Doe"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="contact_email" class="form-label">Email Address <span class="text-danger">*</span></label>
+                                                <input type="email" class="form-control" id="contact_email" name="email_from" required="required" placeholder="john@example.com"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="contact_phone" class="form-label">Phone Number</label>
+                                                <input type="tel" class="form-control" id="contact_phone" name="phone" placeholder="+370 XXX XXXXX"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="contact_service" class="form-label">Service Interested In</label>
+                                                <select class="form-control" id="contact_service" name="service">
+                                                    <option value="">Select a service</option>
+                                                    <option value="aerial_photography">Aerial Photography</option>
+                                                    <option value="aerial_videography">Aerial Videography</option>
+                                                    <option value="2d_mapping">2D Mapping &amp; Orthophotos</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="contact_subject" class="form-label">Subject <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="contact_subject" name="subject" required="required" placeholder="Project inquiry"/>
+                                            </div>
+                                        <div class="mb-3">
+                                            <label for="contact_message" class="form-label">Message <span class="text-danger">*</span></label>
+                                            <textarea class="form-control" id="contact_message" name="body_html" rows="5" required="required" placeholder="Tell us about your project..."></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-lg">
+                                            <i class="fa fa-paper-plane me-2"></i> Send Message
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Why Choose Us Section -->
+                <section class="contact-features py-5 bg-light">
+                    <div class="container">
+                        <div class="row text-center">
+                            <div class="col-md-3 mb-4">
+                                <div class="feature-box">
+                                    <i class="fa fa-shield fa-3x text-primary mb-3"></i>
+                                    <h5>FAA Certified</h5>
+                                    <p class="text-muted">Licensed &amp; Insured</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="feature-box">
+                                    <i class="fa fa-clock-o fa-3x text-primary mb-3"></i>
+                                    <h5>Fast Response</h5>
+                                    <p class="text-muted">24-48 Hour Reply Time</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="feature-box">
+                                    <i class="fa fa-money fa-3x text-primary mb-3"></i>
+                                    <h5>Free Quotes</h5>
+                                    <p class="text-muted">No Obligation Estimates</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="feature-box">
+                                    <i class="fa fa-star fa-3x text-primary mb-3"></i>
+                                    <h5>Quality Assured</h5>
+                                    <p class="text-muted">Professional Results</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </xpath>
+    </template>
+</odoo>

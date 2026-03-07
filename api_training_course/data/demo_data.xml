@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Demo Blog Posts -->
+        <record id="demo_blog_post_1" model="api.blog.post">
+            <field name="title">Getting Started with REST APIs</field>
+            <field name="content"><![CDATA[
+                <h2>Introduction to REST APIs</h2>
+                <p>REST (Representational State Transfer) is an architectural style for building web services. In this post, we'll explore the fundamentals of REST APIs and how to build them.</p>
+
+                <h3>Key Principles</h3>
+                <ul>
+                    <li><strong>Stateless:</strong> Each request contains all information needed</li>
+                    <li><strong>Client-Server:</strong> Separation of concerns</li>
+                    <li><strong>Cacheable:</strong> Responses can be cached</li>
+                    <li><strong>Uniform Interface:</strong> Standardized communication</li>
+                </ul>
+
+                <h3>HTTP Methods</h3>
+                <p>REST APIs use standard HTTP methods:</p>
+                <ul>
+                    <li>GET - Retrieve resources</li>
+                    <li>POST - Create new resources</li>
+                    <li>PUT - Update existing resources</li>
+                    <li>DELETE - Remove resources</li>
+                </ul>
+
+                <p>Understanding these principles is essential for building effective APIs!</p>
+            ]]></field>
+            <field name="status">published</field>
+            <field name="is_featured" eval="True"/>
+            <field name="tags">rest,api,tutorial,beginner</field>
+            <field name="author_id" ref="base.user_admin"/>
+        </record>
+
+        <record id="demo_blog_post_2" model="api.blog.post">
+            <field name="title">Building Your First API with Odoo</field>
+            <field name="content"><![CDATA[
+                <h2>Create APIs in Odoo</h2>
+                <p>Odoo provides a powerful framework for building REST APIs. Let's see how easy it is!</p>
+
+                <h3>Step 1: Create a Controller</h3>
+                <pre><code>
+from odoo import http
+from odoo.http import request
+
+class MyApiController(http.Controller):
+    @http.route('/api/hello', type='http', auth='public')
+    def hello_world(self):
+        return "Hello, API!"
+                </code></pre>
+
+                <h3>Step 2: Handle JSON Responses</h3>
+                <pre><code>
+@http.route('/api/data', type='json', auth='public')
+def get_data(self):
+    return {'message': 'Hello from JSON API'}
+                </code></pre>
+
+                <p>That's it! You've created your first API endpoint in Odoo.</p>
+            ]]></field>
+            <field name="status">published</field>
+            <field name="is_featured" eval="True"/>
+            <field name="tags">odoo,api,python,tutorial</field>
+            <field name="author_id" ref="base.user_admin"/>
+        </record>
+
+        <record id="demo_blog_post_3" model="api.blog.post">
+            <field name="title">Understanding Database Models and ORM</field>
+            <field name="content"><![CDATA[
+                <h2>Working with Odoo ORM</h2>
+                <p>The ORM (Object-Relational Mapping) in Odoo makes database operations simple and pythonic.</p>
+
+                <h3>Creating Records</h3>
+                <pre><code>
+# Create a new record
+post = request.env['api.blog.post'].create({
+    'title': 'New Post',
+    'content': 'Content here'
+})
+                </code></pre>
+
+                <h3>Reading Records</h3>
+                <pre><code>
+# Search for records
+posts = request.env['api.blog.post'].search([
+    ('status', '=', 'published')
+])
+
+# Get specific record
+post = request.env['api.blog.post'].browse(1)
+                </code></pre>
+
+                <h3>Updating Records</h3>
+                <pre><code>
+post.write({
+    'status': 'published'
+})
+                </code></pre>
+
+                <h3>Deleting Records</h3>
+                <pre><code>
+post.unlink()
+                </code></pre>
+            ]]></field>
+            <field name="status">published</field>
+            <field name="tags">odoo,orm,database,tutorial</field>
+            <field name="author_id" ref="base.user_admin"/>
+        </record>
+
+        <record id="demo_blog_post_4" model="api.blog.post">
+            <field name="title">API Authentication Best Practices</field>
+            <field name="content"><![CDATA[
+                <h2>Securing Your APIs</h2>
+                <p>Authentication is crucial for protecting your API endpoints.</p>
+
+                <h3>Authentication Types in Odoo</h3>
+                <ul>
+                    <li><strong>auth='public':</strong> No authentication required</li>
+                    <li><strong>auth='user':</strong> Requires logged-in user</li>
+                    <li><strong>auth='none':</strong> No database connection</li>
+                </ul>
+
+                <h3>Best Practices</h3>
+                <ol>
+                    <li>Always use HTTPS in production</li>
+                    <li>Implement rate limiting</li>
+                    <li>Validate all input data</li>
+                    <li>Return appropriate error messages</li>
+                    <li>Log authentication failures</li>
+                </ol>
+            ]]></field>
+            <field name="status">draft</field>
+            <field name="tags">security,authentication,api,best-practices</field>
+            <field name="author_id" ref="base.user_admin"/>
+        </record>
+
+        <!-- Demo Tasks -->
+        <record id="demo_task_1" model="api.task">
+            <field name="name">Learn API Basics</field>
+            <field name="description">Complete the introduction to REST APIs module</field>
+            <field name="assigned_to" ref="base.user_admin"/>
+            <field name="project_name">API Training Course</field>
+            <field name="status">done</field>
+            <field name="priority">1</field>
+            <field name="estimated_hours">4</field>
+            <field name="actual_hours">3.5</field>
+            <field name="progress">100</field>
+        </record>
+
+        <record id="demo_task_2" model="api.task">
+            <field name="name">Build First CRUD API</field>
+            <field name="description">Create a complete CRUD API for blog posts</field>
+            <field name="assigned_to" ref="base.user_admin"/>
+            <field name="project_name">API Training Course</field>
+            <field name="status">in_progress</field>
+            <field name="priority">2</field>
+            <field name="estimated_hours">8</field>
+            <field name="actual_hours">5</field>
+            <field name="progress">65</field>
+        </record>
+
+        <record id="demo_task_3" model="api.task">
+            <field name="name">Implement Authentication</field>
+            <field name="description">Add user authentication to API endpoints</field>
+            <field name="assigned_to" ref="base.user_admin"/>
+            <field name="project_name">API Training Course</field>
+            <field name="status">todo</field>
+            <field name="priority">3</field>
+            <field name="estimated_hours">6</field>
+            <field name="progress">0</field>
+        </record>
+
+        <record id="demo_task_4" model="api.task">
+            <field name="name">Add Pagination and Filtering</field>
+            <field name="description">Implement pagination and advanced filtering for list endpoints</field>
+            <field name="assigned_to" ref="base.user_admin"/>
+            <field name="project_name">API Training Course</field>
+            <field name="status">todo</field>
+            <field name="priority">1</field>
+            <field name="estimated_hours">4</field>
+            <field name="progress">0</field>
+        </record>
+
+        <!-- Demo User Profile -->
+        <record id="demo_user_profile_admin" model="api.user.profile">
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="bio">Passionate about teaching backend development and API design. Love helping others learn to code!</field>
+            <field name="job_title">Senior Backend Developer</field>
+            <field name="company">Tech Education Inc.</field>
+            <field name="years_of_experience">8</field>
+            <field name="skills">Python,JavaScript,SQL,REST APIs,Odoo,Django,FastAPI</field>
+            <field name="interests">API Design,Teaching,Open Source,DevOps</field>
+            <field name="city">San Francisco</field>
+            <field name="country">USA</field>
+            <field name="timezone">UTC-8</field>
+            <field name="preferred_language">en</field>
+            <field name="github_username">apimaster</field>
+            <field name="is_verified" eval="True"/>
+            <field name="email_notifications" eval="True"/>
+        </record>
+    </data>
+</odoo>

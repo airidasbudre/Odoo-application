@@ -1,0 +1,796 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * ica_website_theme
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-04 12:00:00\n"
+"PO-Revision-Date: 2025-11-04 12:00:00\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lt_LT\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: ica_website_theme
+#: model:website.menu,name:ica_website_theme.drone_menu_home
+msgid "Home"
+msgstr "Pradžia"
+
+#. module: ica_website_theme
+#: model:website.menu,name:ica_website_theme.menu_services
+msgid "Services"
+msgstr "Paslaugos"
+
+#. module: ica_website_theme
+#: model:website.menu,name:ica_website_theme.menu_portfolio
+msgid "Portfolio"
+msgstr "Portfelis"
+
+#. module: ica_website_theme
+#: model:website.menu,name:ica_website_theme.drone_menu_contact
+msgid "Contact"
+msgstr "Kontaktai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "FAA Certified &amp; Insured"
+msgstr "FAA sertifikuota ir apdraustas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Professional Drone Services"
+msgstr "Profesionalios dronų paslaugos"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Capture stunning aerial photography, cinematic videos, and precision 2D mapping from the sky. Elevate your perspective with our expert drone solutions."
+msgstr "Užfiksuokite nuostabias oro nuotraukas, kinematografines vaizdo įrašus ir tikslų 2D žemėlapių sudarymą iš oro. Pakelkite savo perspektyvą su mūsų ekspertų dronų sprendimais."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Get a Quote"
+msgstr "Gauti pasiūlymą"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "View Portfolio"
+msgstr "Žiūrėti portfelį"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Add Your Stunning Aerial Photo Here"
+msgstr "Pridėkite savo nuostabią oro nuotrauką čia"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Why Choose Our Drone Services"
+msgstr "Kodėl pasirinkti mūsų dronų paslaugas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Professional aerial solutions backed by expertise and technology"
+msgstr "Profesionalūs oro sprendimai, paremti kompetencija ir technologijomis"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "FAA Certified"
+msgstr "FAA sertifikuota"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Licensed and certified pilots with full insurance coverage"
+msgstr "Licencijuoti ir sertifikuoti pilotai su visiška draudimine apsauga"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Award Winning"
+msgstr "Apdovanota"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Recognized for excellence in aerial photography and mapping"
+msgstr "Pripažinta už puikią oro fotografiją ir žemėlapių sudarymą"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Latest Technology"
+msgstr "Naujausios technologijos"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "State-of-the-art drones with 4K cameras and sensors"
+msgstr "Moderniausi dronai su 4K kameromis ir jutikliais"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Fast Turnaround"
+msgstr "Greitas atlikimas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Quick delivery of high-quality edited footage and data"
+msgstr "Greitas aukštos kokybės redaguotos medžiagos ir duomenų pristatymas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Projects Completed"
+msgstr "Užbaigti projektai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Flight Hours"
+msgstr "Skrydžio valandos"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Client Satisfaction"
+msgstr "Klientų pasitenkinimas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Experience"
+msgstr "Patirtis"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Years"
+msgstr "Metai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Our Services"
+msgstr "Mūsų paslaugos"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Professional aerial solutions for every need"
+msgstr "Profesionalūs oro sprendimai kiekvienam poreikiui"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Aerial Photography"
+msgstr "Oro fotografija"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Capture breathtaking high-resolution aerial photographs perfect for real estate, events, construction progress, and marketing materials."
+msgstr "Užfiksuokite kvapą gniaužiančias didelės raiškos oro nuotraukas, tobulai tinkančias nekilnojamajam turtui, renginiams, statybos eigai ir rinkodaros medžiagai."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Aerial Videography"
+msgstr "Oro vaizdo įrašai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Professional cinematic drone videos with smooth stabilized footage for commercials, documentaries, and promotional content."
+msgstr "Profesionalūs kinematografiniai dronų vaizdo įrašai su sklandžiu stabilizuotu vaizdavimu reklamoms, dokumentiniams filmams ir reklaminiam turiniui."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "2D Mapping &amp; Orthophotos"
+msgstr "2D žemėlapių sudarymas ir ortofotografijos"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Precision orthophoto mapping for surveying, agriculture, construction sites, and land management with accurate measurements and GIS data."
+msgstr "Tikslus ortofotografijų žemėlapių sudarymas tyrimams, žemės ūkiui, statybos aikštelėms ir žemės valdymui su tiksliais matavimais ir GIS duomenimis."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Recent Projects"
+msgstr "Naujausi projektai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "See our work in action"
+msgstr "Žiūrėkite mūsų darbus"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Real Estate Photography"
+msgstr "Nekilnojamojo turto fotografija"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Luxury Property Showcase"
+msgstr "Prabangių nuosavybių pristatymas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Stunning aerial views of a 5-acre estate"
+msgstr "Nuostabūs oro vaizdai 5 akrų valdos"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Commercial Video"
+msgstr "Komercinis vaizdo įrašas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Construction Progress"
+msgstr "Statybos eiga"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Time-lapse of 6-month development project"
+msgstr "6 mėnesių plėtros projekto laiko juosta"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Mapping Project"
+msgstr "Žemėlapių sudarymo projektas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Agricultural Survey"
+msgstr "Žemės ūkio tyrimas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "500-acre farm orthophoto mapping"
+msgstr "500 akrų ūkio ortofotografijų žemėlapių sudarymas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "View Full Portfolio"
+msgstr "Žiūrėti visą portfelį"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "What Our Clients Say"
+msgstr "Ką sako mūsų klientai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Trusted by businesses and professionals"
+msgstr "Patikima verslo ir profesionalų"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Outstanding aerial photography! The images helped us sell the property within two weeks. Highly professional service."
+msgstr "Puiki oro fotografija! Nuotraukos padėjo mums parduoti nuosavybę per dvi savaites. Labai profesionali paslauga."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Sarah Johnson"
+msgstr "Sarah Johnson"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Real Estate Agent"
+msgstr "Nekilnojamojo turto agentas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "The mapping data was incredibly accurate. Saved us thousands on our construction project. Will definitely use again!"
+msgstr "Žemėlapių duomenys buvo neįtikėtinai tikslūs. Sutaupėme tūkstančius mūsų statybos projekte. Tikrai naudosimės vėl!"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Mike Roberts"
+msgstr "Mike Roberts"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Construction Manager"
+msgstr "Statybos vadovas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Amazing cinematic footage for our commercial. Fast turnaround and excellent communication throughout the project."
+msgstr "Nuostabi kinematografinė medžiaga mūsų reklamai. Greitas atlikimas ir puiki komunikacija per visą projektą."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Emily Chen"
+msgstr "Emily Chen"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Marketing Director"
+msgstr "Rinkodaros direktorius"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Ready to Take Flight?"
+msgstr "Pasiruošę kilti?"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Get professional aerial solutions for your project. Contact us for a free consultation and quote."
+msgstr "Gaukite profesionalius oro sprendimus savo projektui. Susisiekite su mumis dėl nemokamos konsultacijos ir pasiūlymo."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Request a Quote"
+msgstr "Prašyti pasiūlymo"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Our Drone Services"
+msgstr "Mūsų dronų paslaugos"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Professional aerial solutions for photography, videography, and precision mapping"
+msgstr "Profesionalūs oro sprendimai fotografijai, vaizdo įrašams ir tiksliam žemėlapių sudarymui"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Aerial Photography Sample"
+msgstr "Oro fotografijos pavyzdys"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "High-resolution aerial photographs from the sky"
+msgstr "Didelės raiškos oro nuotraukos iš dangaus"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Real estate property showcases"
+msgstr "Nekilnojamojo turto pristatymai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Construction progress documentation"
+msgstr "Statybos eigos dokumentavimas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Event coverage from unique angles"
+msgstr "Renginių aprėptis iš unikalių kampų"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Marketing and promotional materials"
+msgstr "Rinkodaros ir reklaminė medžiaga"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "4K+ resolution capabilities"
+msgstr "4K+ raiškos galimybės"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Aerial Videography Sample"
+msgstr "Oro vaizdo įrašų pavyzdys"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Professional cinematic drone videos"
+msgstr "Profesionalūs kinematografiniai dronų vaizdo įrašai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Commercial and promotional videos"
+msgstr "Komerciniai ir reklaminiai vaizdo įrašai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Documentary and film production"
+msgstr "Dokumentinių filmų ir filmų gamyba"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Smooth stabilized footage"
+msgstr "Sklandus stabilizuotas vaizdavimas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Time-lapse sequences"
+msgstr "Laiko juostos sekos"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "4K video recording"
+msgstr "4K vaizdo įrašymas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Mapping &amp; Orthophotos Sample"
+msgstr "Žemėlapių sudarymo ir ortofotografijų pavyzdys"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Precision aerial mapping and surveying"
+msgstr "Tikslus oro žemėlapių sudarymas ir tyrimai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Orthophoto generation for surveying"
+msgstr "Ortofotografijų generavimas tyrimams"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Agricultural field analysis"
+msgstr "Žemės ūkio laukų analizė"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Construction site mapping"
+msgstr "Statybos aikštelių žemėlapių sudarymas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Land management and GIS data"
+msgstr "Žemės valdymas ir GIS duomenys"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Accurate measurements and analysis"
+msgstr "Tikslūs matavimai ir analizė"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Ready to Get Started?"
+msgstr "Pasiruošę pradėti?"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Contact us today for a free consultation and custom quote for your project."
+msgstr "Susisiekite su mumis šiandien dėl nemokamos konsultacijos ir individualaus pasiūlymo jūsų projektui."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Our Portfolio"
+msgstr "Mūsų portfelis"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Explore our collection of stunning aerial photography, videography, and mapping projects"
+msgstr "Tyrinėkite mūsų nuostabių oro fotografijos, vaizdo įrašų ir žemėlapių sudarymo projektų kolekciją"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Luxury Estate Aerial Views"
+msgstr "Prabangių valdų oro vaizdai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "High-resolution aerial photography of a stunning 5-acre luxury estate, showcasing the property's unique features and surrounding landscape."
+msgstr "Didelės raiškos oro fotografija nuostabios 5 akrų prabangos valdos, demonstruojanti unikalias nuosavybės savybes ir aplinkinį kraštovaizdį."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Commercial Building"
+msgstr "Komercinis pastatas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Commercial Complex Photography"
+msgstr "Komercinio komplekso fotografija"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Professional aerial shots of a modern commercial complex, highlighting architecture and location advantages."
+msgstr "Profesionalios oro nuotraukos šiuolaikinio komercinio komplekso, pabrėžiančios architektūrą ir vietos privalumus."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Commercial"
+msgstr "Komercinis"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Photography"
+msgstr "Fotografija"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Nature &amp; Landscape"
+msgstr "Gamta ir kraštovaizdis"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Natural Landscape Series"
+msgstr "Gamtinių kraštovaizdžių serija"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Breathtaking aerial views of natural landscapes, forests, and scenic areas captured in stunning detail."
+msgstr "Kvapą gniaužiantys oro vaizdai gamtinių kraštovaizdžių, miškų ir vaizdingų vietų, užfiksuoti nuostabiais detalumais."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Nature"
+msgstr "Gamta"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Construction Time-lapse"
+msgstr "Statybos laiko juosta"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Construction Progress Video"
+msgstr "Statybos eigos vaizdo įrašas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "6-month time-lapse video documenting the complete construction of a major development project."
+msgstr "6 mėnesių laiko juostos vaizdo įrašas, dokumentuojantis visišką didelio plėtros projekto statybą."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Construction"
+msgstr "Statyba"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Videography"
+msgstr "Vaizdo įrašai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Commercial Promo"
+msgstr "Komercinė reklama"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Commercial Promotional Video"
+msgstr "Komercinis reklamos vaizdo įrašas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Cinematic aerial footage for a high-impact commercial promotional campaign."
+msgstr "Kinematografinė oro medžiaga didelės įtakos komercinei reklamos kampanijai."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Marketing"
+msgstr "Rinkodara"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Event Coverage"
+msgstr "Renginių aprėptis"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Special Event Coverage"
+msgstr "Specialių renginių aprėptis"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Dynamic aerial videography capturing the scale and atmosphere of large-scale events."
+msgstr "Dinamiški oro vaizdo įrašai, užfiksuojantys didelių renginių mastą ir atmosferą."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Events"
+msgstr "Renginiai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "500-Acre Farm Mapping"
+msgstr "500 akrų ūkio žemėlapių sudarymas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Comprehensive orthophoto mapping of agricultural land with precise measurements for crop management."
+msgstr "Išsamus žemės ūkio žemių ortofotografijų žemėlapių sudarymas su tiksliais matavimais augalų valdymui."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Agriculture"
+msgstr "Žemės ūkis"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Mapping"
+msgstr "Žemėlapių sudarymas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Construction Site Mapping"
+msgstr "Statybos aikštelių žemėlapių sudarymas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Construction Site Survey"
+msgstr "Statybos aikštelės tyrimas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Detailed site mapping for construction planning with accurate topographical data and measurements."
+msgstr "Išsamus aikštelės žemėlapių sudarymas statybos planavimui su tiksliais topografiniais duomenimis ir matavimais."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Land Management"
+msgstr "Žemės valdymas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Land Management GIS Data"
+msgstr "Žemės valdymo GIS duomenys"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Precision orthophoto generation for comprehensive land management and GIS integration."
+msgstr "Tikslus ortofotografijų generavimas išsamiam žemės valdymui ir GIS integracijai."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "GIS"
+msgstr "GIS"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Like What You See?"
+msgstr "Patinka, ką matote?"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Let's create something amazing together. Contact us for your next project."
+msgstr "Sukurkime kažką nuostabaus kartu. Susisiekite su mumis dėl kito projekto."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Start Your Project"
+msgstr "Pradėkite savo projektą"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Contact Us"
+msgstr "Susisiekite su mumis"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Get in touch with us for a free consultation and custom quote for your project"
+msgstr "Susisiekite su mumis dėl nemokamos konsultacijos ir individualaus pasiūlymo jūsų projektui"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Get In Touch"
+msgstr "Susisiekite"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Have a project in mind? We'd love to hear from you. Send us a message and we'll respond as soon as possible."
+msgstr "Turite projektą galvoje? Norėtume išgirsti iš jūsų. Atsiųskite mums žinutę ir atsakysime kuo greičiau."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Email"
+msgstr "El. paštas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Phone"
+msgstr "Telefonas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Business Hours"
+msgstr "Darbo laikas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Monday - Friday: 9:00 AM - 6:00 PM"
+msgstr "Pirmadienis - Penktadienis: 9:00 - 18:00"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Saturday: 10:00 AM - 4:00 PM"
+msgstr "Šeštadienis: 10:00 - 16:00"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Sunday: Closed"
+msgstr "Sekmadienis: Uždaryta"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Send Us a Message"
+msgstr "Atsiųskite mums žinutę"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Your Name"
+msgstr "Jūsų vardas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Email Address"
+msgstr "El. pašto adresas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Phone Number"
+msgstr "Telefono numeris"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Service Interested In"
+msgstr "Domina paslauga"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Select a service"
+msgstr "Pasirinkite paslaugą"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Other"
+msgstr "Kita"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Subject"
+msgstr "Tema"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Project inquiry"
+msgstr "Projekto užklausa"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Message"
+msgstr "Žinutė"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Tell us about your project..."
+msgstr "Papasakokite apie savo projektą..."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Send Message"
+msgstr "Siųsti žinutę"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Licensed &amp; Insured"
+msgstr "Licencijuota ir apdraustas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Fast Response"
+msgstr "Greitas atsakymas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "24-48 Hour Reply Time"
+msgstr "24-48 valandų atsakymo laikas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Free Quotes"
+msgstr "Nemokami pasiūlymai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "No Obligation Estimates"
+msgstr "Įsipareigojimai neįpareigojantys įvertinimai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Quality Assured"
+msgstr "Garantuota kokybė"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Professional Results"
+msgstr "Profesionalūs rezultatai"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+msgid "About Us"
+msgstr "Apie mus"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+msgid "Professional drone services for aerial photography, videography, and precision 2D mapping. Certified, insured, and ready to elevate your perspective."
+msgstr "Profesionalios dronų paslaugos oro fotografijai, vaizdo įrašams ir tiksliam 2D žemėlapių sudarymui. Sertifikuota, apdraustas ir pasiruošęs pakelti jūsų perspektyvą."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+msgid "Quick Links"
+msgstr "Greitos nuorodos"

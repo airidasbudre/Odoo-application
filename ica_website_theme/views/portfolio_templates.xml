@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Portfolio Page Template -->
+    <template id="portfolio_page" name="Drone Services Portfolio Page">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure">
+
+                <!-- Portfolio Hero -->
+                <section class="portfolio-hero py-5 bg-light">
+                    <div class="container">
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <h1 class="display-4 fw-bold mb-4">Our Portfolio</h1>
+                                <p class="lead text-muted">
+                                    Explore our collection of stunning aerial photography, videography, and mapping projects
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Portfolio Grid Section -->
+                <section class="all-portfolio py-5">
+                    <div class="container">
+
+                        <!-- Aerial Photography Projects -->
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <h2 class="mb-4">
+                                    <i class="fa fa-camera text-primary"></i> Aerial Photography
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-image">
+                                        <div class="placeholder-portfolio">
+                                            <i class="fa fa-image fa-4x"></i>
+                                            <p class="mt-3">Luxury Property Showcase</p>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-info">
+                                        <h4>Luxury Estate Aerial Views</h4>
+                                        <p class="mb-2">High-resolution aerial photography of a stunning 5-acre luxury estate, showcasing the property's unique features and surrounding landscape.</p>
+                                        <span class="badge bg-primary">Real Estate</span>
+                                        <span class="badge bg-secondary">Photography</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-image">
+                                        <div class="placeholder-portfolio">
+                                            <i class="fa fa-building fa-4x"></i>
+                                            <p class="mt-3">Commercial Building</p>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-info">
+                                        <h4>Commercial Complex Photography</h4>
+                                        <p class="mb-2">Professional aerial shots of a modern commercial complex, highlighting architecture and location advantages.</p>
+                                        <span class="badge bg-primary">Commercial</span>
+                                        <span class="badge bg-secondary">Photography</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-image">
+                                        <div class="placeholder-portfolio">
+                                            <i class="fa fa-tree fa-4x"></i>
+                                            <p class="mt-3">Nature &amp; Landscape</p>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-info">
+                                        <h4>Natural Landscape Series</h4>
+                                        <p class="mb-2">Breathtaking aerial views of natural landscapes, forests, and scenic areas captured in stunning detail.</p>
+                                        <span class="badge bg-primary">Nature</span>
+                                        <span class="badge bg-secondary">Photography</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aerial Videography Projects -->
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <h2 class="mb-4">
+                                    <i class="fa fa-video-camera text-primary"></i> Aerial Videography
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-image">
+                                        <div class="placeholder-portfolio">
+                                            <i class="fa fa-film fa-4x"></i>
+                                            <p class="mt-3">Construction Time-lapse</p>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-info">
+                                        <h4>Construction Progress Video</h4>
+                                        <p class="mb-2">6-month time-lapse video documenting the complete construction of a major development project.</p>
+                                        <span class="badge bg-primary">Construction</span>
+                                        <span class="badge bg-secondary">Videography</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-image">
+                                        <div class="placeholder-portfolio">
+                                            <i class="fa fa-play-circle fa-4x"></i>
+                                            <p class="mt-3">Commercial Promo</p>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-info">
+                                        <h4>Commercial Promotional Video</h4>
+                                        <p class="mb-2">Cinematic aerial footage for a high-impact commercial promotional campaign.</p>
+                                        <span class="badge bg-primary">Marketing</span>
+                                        <span class="badge bg-secondary">Videography</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-image">
+                                        <div class="placeholder-portfolio">
+                                            <i class="fa fa-calendar fa-4x"></i>
+                                            <p class="mt-3">Event Coverage</p>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-info">
+                                        <h4>Special Event Coverage</h4>
+                                        <p class="mb-2">Dynamic aerial videography capturing the scale and atmosphere of large-scale events.</p>
+                                        <span class="badge bg-primary">Events</span>
+                                        <span class="badge bg-secondary">Videography</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2D Mapping & Orthophotos Projects -->
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <h2 class="mb-4">
+                                    <i class="fa fa-map text-primary"></i> 2D Mapping &amp; Orthophotos
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-image">
+                                        <div class="placeholder-portfolio">
+                                            <i class="fa fa-leaf fa-4x"></i>
+                                            <p class="mt-3">Agricultural Survey</p>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-info">
+                                        <h4>500-Acre Farm Mapping</h4>
+                                        <p class="mb-2">Comprehensive orthophoto mapping of agricultural land with precise measurements for crop management.</p>
+                                        <span class="badge bg-primary">Agriculture</span>
+                                        <span class="badge bg-secondary">Mapping</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-image">
+                                        <div class="placeholder-portfolio">
+                                            <i class="fa fa-wrench fa-4x"></i>
+                                            <p class="mt-3">Construction Site Mapping</p>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-info">
+                                        <h4>Construction Site Survey</h4>
+                                        <p class="mb-2">Detailed site mapping for construction planning with accurate topographical data and measurements.</p>
+                                        <span class="badge bg-primary">Construction</span>
+                                        <span class="badge bg-secondary">Mapping</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="portfolio-card">
+                                    <div class="portfolio-image">
+                                        <div class="placeholder-portfolio">
+                                            <i class="fa fa-globe fa-4x"></i>
+                                            <p class="mt-3">Land Management</p>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-info">
+                                        <h4>Land Management GIS Data</h4>
+                                        <p class="mb-2">Precision orthophoto generation for comprehensive land management and GIS integration.</p>
+                                        <span class="badge bg-primary">GIS</span>
+                                        <span class="badge bg-secondary">Mapping</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="ica-cta py-5">
+                    <div class="container">
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <h2 class="cta-title">Like What You See?</h2>
+                                <p class="cta-subtitle mb-4">
+                                    Let's create something amazing together. Contact us for your next project.
+                                </p>
+                                <a href="/contactus" class="btn btn-light btn-lg">Start Your Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </t>
+    </template>
+
+    <!-- Create Portfolio Page Record -->
+    <record id="portfolio_page_record" model="website.page">
+        <field name="name">Portfolio</field>
+        <field name="is_published" eval="True"/>
+        <field name="url">/portfolio</field>
+        <field name="view_id" ref="portfolio_page"/>
+        <field name="track" eval="True"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,959 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ica_website_theme
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0-20251021\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-04 14:02+0000\n"
+"PO-Revision-Date: 2025-11-04 14:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid ""
+"\"Amazing cinematic footage for our commercial. Fast turnaround and\n"
+"                                        excellent communication throughout the project.\""
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid ""
+"\"Outstanding aerial photography! The images helped us sell the property\n"
+"                                        within two weeks. Highly professional service.\""
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid ""
+"\"The mapping data was incredibly accurate. Saved us thousands on our\n"
+"                                        construction project. Will definitely use again!\""
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "+370 647 48409"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "+370 XXX XXXXX"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "1000+"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "24-48 Hour Reply Time"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "2D Mapping &amp; Orthophotos"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "5 Years"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "500+"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "500-Acre Farm Mapping"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "500-acre farm orthophoto mapping"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"6-month time-lapse video documenting the complete construction of a major "
+"development project."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "98%"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "<i class=\"fa fa-camera text-primary\"/> Aerial Photography"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "<i class=\"fa fa-certificate\"/> FAA Certified &amp; Insured"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "<i class=\"fa fa-check-circle text-success\"/> 4K video recording"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "<i class=\"fa fa-check-circle text-success\"/> 4K+ resolution capabilities"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid ""
+"<i class=\"fa fa-check-circle text-success\"/> Accurate measurements and "
+"analysis"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "<i class=\"fa fa-check-circle text-success\"/> Agricultural field analysis"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid ""
+"<i class=\"fa fa-check-circle text-success\"/> Commercial and promotional "
+"videos"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid ""
+"<i class=\"fa fa-check-circle text-success\"/> Construction progress "
+"documentation"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "<i class=\"fa fa-check-circle text-success\"/> Construction site mapping"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid ""
+"<i class=\"fa fa-check-circle text-success\"/> Documentary and film "
+"production"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid ""
+"<i class=\"fa fa-check-circle text-success\"/> Event coverage from unique "
+"angles"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid ""
+"<i class=\"fa fa-check-circle text-success\"/> Land management and GIS data"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid ""
+"<i class=\"fa fa-check-circle text-success\"/> Marketing and promotional "
+"materials"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid ""
+"<i class=\"fa fa-check-circle text-success\"/> Orthophoto generation for "
+"surveying"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid ""
+"<i class=\"fa fa-check-circle text-success\"/> Real estate property "
+"showcases"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "<i class=\"fa fa-check-circle text-success\"/> Smooth stabilized footage"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "<i class=\"fa fa-check-circle text-success\"/> Time-lapse sequences"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+msgid "<i class=\"fa fa-envelope\"/> info@droneservices.com"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "<i class=\"fa fa-info-circle text-primary\"/> Get In Touch"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "<i class=\"fa fa-map text-primary\"/> 2D Mapping &amp; Orthophotos"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+msgid "<i class=\"fa fa-map-marker\"/> Your City, Your Country"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "<i class=\"fa fa-paper-plane me-2\"/> Send Message"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "<i class=\"fa fa-paper-plane text-primary\"/> Send Us a Message"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "<i class=\"fa fa-paper-plane\"/> Get a Quote"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+msgid "<i class=\"fa fa-phone\"/> +1 (555) 123-4567"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "<i class=\"fa fa-play-circle\"/> View Portfolio"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "<i class=\"fa fa-video-camera text-primary\"/> Aerial Videography"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid ""
+"<select class=\"form-control\" id=\"contact_service\" name=\"service\">\n"
+"                                                    <option value=\"\">Select a service</option>\n"
+"                                                    <option value=\"aerial_photography\">Aerial Photography</option>\n"
+"                                                    <option value=\"aerial_videography\">Aerial Videography</option>\n"
+"                                                    <option value=\"2d_mapping\">2D Mapping &amp; Orthophotos</option>\n"
+"                                                    <option value=\"other\">Other</option>\n"
+"                                                </select>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"<span class=\"badge bg-primary\">Agriculture</span>\n"
+"                                        <span class=\"badge bg-secondary\">Mapping</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"<span class=\"badge bg-primary\">Commercial</span>\n"
+"                                        <span class=\"badge bg-secondary\">Photography</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"<span class=\"badge bg-primary\">Construction</span>\n"
+"                                        <span class=\"badge bg-secondary\">Mapping</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"<span class=\"badge bg-primary\">Construction</span>\n"
+"                                        <span class=\"badge bg-secondary\">Videography</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"<span class=\"badge bg-primary\">Events</span>\n"
+"                                        <span class=\"badge bg-secondary\">Videography</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"<span class=\"badge bg-primary\">GIS</span>\n"
+"                                        <span class=\"badge bg-secondary\">Mapping</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"<span class=\"badge bg-primary\">Marketing</span>\n"
+"                                        <span class=\"badge bg-secondary\">Videography</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"<span class=\"badge bg-primary\">Nature</span>\n"
+"                                        <span class=\"badge bg-secondary\">Photography</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"<span class=\"badge bg-primary\">Real Estate</span>\n"
+"                                        <span class=\"badge bg-secondary\">Photography</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid ""
+"<strong>Emily Chen</strong>\n"
+"                                        <span>Marketing Director</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid ""
+"<strong>Mike Roberts</strong>\n"
+"                                        <span>Construction Manager</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid ""
+"<strong>Sarah Johnson</strong>\n"
+"                                        <span>Real Estate Agent</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+msgid "About Our Drone Services"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Add Your Stunning Aerial Photo Here"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Aerial Photography"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Aerial Photography Sample"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Aerial Videography"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Aerial Videography Sample"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Agricultural Survey"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Award Winning"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"Breathtaking aerial views of natural landscapes, forests, and scenic areas "
+"captured in stunning detail."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Business Hours"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid ""
+"Capture breathtaking high-resolution aerial photographs perfect for real estate,\n"
+"                                        events, construction progress, and marketing materials."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid ""
+"Capture stunning aerial photography, cinematic videos, and precision 2D mapping\n"
+"                                    from the sky. Elevate your perspective with our expert drone solutions."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"Cinematic aerial footage for a high-impact commercial promotional campaign."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Client Satisfaction"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Commercial Building"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Commercial Complex Photography"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Commercial Promo"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Commercial Promotional Video"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Commercial Video"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"Comprehensive orthophoto mapping of agricultural land with precise "
+"measurements for crop management."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Construction Progress"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Construction Progress Video"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Construction Site Mapping"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Construction Site Survey"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Construction Time-lapse"
+msgstr ""
+
+#. module: ica_website_theme
+#: model:website.menu,name:ica_website_theme.drone_menu_contact
+msgid "Contact"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+msgid "Contact Us"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid ""
+"Contact us today for a free consultation and custom quote for your project."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"Detailed site mapping for construction planning with accurate topographical "
+"data and measurements."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_logo
+msgid "Drone Services Logo"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"Dynamic aerial videography capturing the scale and atmosphere of large-scale"
+" events."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Email"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Email Address <span class=\"text-danger\">*</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Event Coverage"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Experience"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"Explore our collection of stunning aerial photography, videography, and "
+"mapping projects"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "FAA Certified"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Fast Response"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Fast Turnaround"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Flight Hours"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Free Quotes"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Get a Quote"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid ""
+"Get in touch with us for a free consultation and custom quote for your "
+"project"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid ""
+"Get professional aerial solutions for your project. Contact us for a free "
+"consultation and quote."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid ""
+"Have a project in mind? We'd love to hear from you. Send us a message and "
+"we'll respond as soon as possible."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "High-resolution aerial photographs from the sky"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"High-resolution aerial photography of a stunning 5-acre luxury estate, "
+"showcasing the property's unique features and surrounding landscape."
+msgstr ""
+
+#. module: ica_website_theme
+#: model:website.menu,name:ica_website_theme.drone_menu_home
+msgid "Home"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "John Doe"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Land Management"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Land Management GIS Data"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Latest Technology"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"Let's create something amazing together. Contact us for your next project."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Licensed &amp; Insured"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Licensed and certified pilots with full insurance coverage"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Like What You See?"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Luxury Estate Aerial Views"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Luxury Property Showcase"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Mapping &amp; Orthophotos Sample"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Mapping Project"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Message <span class=\"text-danger\">*</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Monday - Friday: 9:00 AM - 6:00 PM"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Natural Landscape Series"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Nature &amp; Landscape"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "No Obligation Estimates"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Our Drone Services"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Our Portfolio"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Our Services"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Phone"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Phone Number"
+msgstr ""
+
+#. module: ica_website_theme
+#: model:website.menu,name:ica_website_theme.menu_portfolio
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+msgid "Portfolio"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Precision aerial mapping and surveying"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"Precision orthophoto generation for comprehensive land management and GIS "
+"integration."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid ""
+"Precision orthophoto mapping for surveying, agriculture, construction sites,\n"
+"                                        and land management with accurate measurements and GIS data."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Professional Drone Services"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Professional Results"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+msgid ""
+"Professional aerial photography, videography, and precision mapping services\n"
+"                                using state-of-the-art drone technology. Certified pilots, insured operations."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"Professional aerial shots of a modern commercial complex, highlighting "
+"architecture and location advantages."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Professional aerial solutions backed by expertise and technology"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Professional aerial solutions for every need"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid ""
+"Professional aerial solutions for photography, videography, and precision "
+"mapping"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Professional cinematic drone videos"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid ""
+"Professional cinematic drone videos with smooth stabilized footage\n"
+"                                        for commercials, documentaries, and promotional content."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Project inquiry"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Projects Completed"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Quality Assured"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Quick delivery of high-quality edited footage and data"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Ready to Get Started?"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Ready to Take Flight?"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Real Estate Photography"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Recent Projects"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Recognized for excellence in aerial photography and mapping"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.services_page
+msgid "Request a Quote"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Saturday: 10:00 AM - 4:00 PM"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "See our work in action"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Service Interested In"
+msgstr ""
+
+#. module: ica_website_theme
+#: model:website.menu,name:ica_website_theme.menu_services
+msgid "Services"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Special Event Coverage"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Start Your Project"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "State-of-the-art drones with 4K cameras and sensors"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Stunning aerial views of a 5-acre estate"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Subject <span class=\"text-danger\">*</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Sunday: Closed"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Tell us about your project..."
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Time-lapse of 6-month development project"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Trusted by businesses and professionals"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "View Full Portfolio"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "What Our Clients Say"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "Why Choose Our Drone Services"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "Your Name <span class=\"text-danger\">*</span>"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "john@example.com"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+msgid "pakelkdrona@gmail.com"
+msgstr ""
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_footer
+msgid ""
+"© 2025 Professional Drone Services. All rights reserved. | FAA Certified"
+msgstr ""
