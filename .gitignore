@@ -2,3 +2,28 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# System / sensitive files
+.bash_history
+.bash_logout
+.bashrc
+.profile
+.ssh/
+.env
+.cache/
+.local/
+.npm/
+.dotnet/
+.vscode-server/
+.wget-hsts
+.sudo_as_admin_successful
+.gitconfig
+.claude/
+.claude.json
+
+# Backups and archives
+*.tar.gz
+*.sql.gz
+
+# Odoo filestore (binary data)
+odoo_filestore/
