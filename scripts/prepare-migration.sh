@@ -2,7 +2,7 @@
 set -e
 
 # ── Config ────────────────────────────────────────────────
-BUCKET="odoo-terraform-state-723977204493"
+BUCKET="odoo-backups-623859664395"
 REGION="eu-north-1"
 LOG="/home/ubuntu/migration-prep.log"
 # ──────────────────────────────────────────────────────────

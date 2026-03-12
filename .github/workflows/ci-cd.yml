@@ -492,7 +492,7 @@ jobs:
       - name: Verify backup was uploaded to S3
         run: |
           ssh ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
-            'aws s3 ls s3://odoo-terraform-state-723977204493/backups/ --region eu-north-1 | tail -5'
+            'aws s3 ls s3://odoo-backups-623859664395/backups/ --region eu-north-1 | tail -5'
 
   notify:
     name: Notification
