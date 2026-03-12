@@ -33,4 +33,4 @@ services:
 
 networks:
   odoo-network:
-    external: true
+    driver: bridge
