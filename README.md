@@ -1,6 +1,6 @@
 # Odoo 18 Enterprise Application
 
-Enterprise-grade Odoo 18 deployment with modern DevOps practices, monitoring, and CI/CD automation.
+Enterprise-grade Odoo 18 deployment with modern DevOps practices, monitoring, and CI/CD automation. test
 
 ## Architecture
 
