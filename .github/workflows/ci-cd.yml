@@ -2,9 +2,9 @@ name: Odoo CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, master, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, master ]
   schedule:
     - cron: '0 2 * * *'  # daily at 2am UTC
 
@@ -184,7 +184,7 @@ jobs:
 
       - name: Create backup of current database
         run: |
-          ssh ubuntu@${{ secrets.STAGING_SERVER_IP }} 'docker exec postgres-db pg_dump -U odoo odoo > /backup/odoo-backup-$(date +%Y%m%d-%H%M%S).sql'
+          ssh ubuntu@${{ secrets.STAGING_SERVER_IP }} 'docker exec odoo-db pg_dump -U odoo odoo_db | gzip > /home/ubuntu/backup-staging-$(date +%Y%m%d-%H%M%S).sql.gz'
 
       - name: Deploy to staging server
         run: |
@@ -263,8 +263,8 @@ jobs:
 
       - name: Create backup of production database
         run: |
-          ssh  ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
-            'docker exec postgres-db pg_dump -U odoo odoo | gzip > /home/ubuntu/backup-prod-$(date +%Y%m%d-%H%M%S).sql.gz'
+          ssh ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
+            'docker exec odoo-db pg_dump -U odoo odoo_db | gzip > /home/ubuntu/backup-prod-$(date +%Y%m%d-%H%M%S).sql.gz'
 
       - name: Deploy to production server
         run: |
@@ -333,19 +333,33 @@ jobs:
         if: failure()
         run: |
           echo "🔄 Deployment failed! Initiating rollback..."
-          ssh  ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+          ssh ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+            set -e
             cd /home/ubuntu
 
+            echo "⏸️  Stopping services..."
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml down --timeout 30
+
+            # Restore database from the backup taken before this deployment
+            LATEST_BACKUP=$(ls -t /home/ubuntu/backup-prod-*.sql.gz 2>/dev/null | head -1)
+            if [ -n "$LATEST_BACKUP" ]; then
+              echo "🗄️  Restoring database from: $LATEST_BACKUP"
+              gunzip -c "$LATEST_BACKUP" | docker exec -i odoo-db psql -U odoo odoo_db
+              echo "✅ Database restored"
+            else
+              echo "⚠️  No database backup found — skipping DB restore"
+            fi
+
+            # Restore previous code
             if [ -f .last_deploy_commit ]; then
-              echo "📝 Restoring previous commit: $(cat .last_deploy_commit)"
+              echo "📝 Restoring code to commit: $(cat .last_deploy_commit)"
               git reset --hard $(cat .last_deploy_commit)
             else
-              echo "⚠️  No previous commit found, trying HEAD~1"
+              echo "⚠️  No saved commit found, reverting to HEAD~1"
               git reset --hard HEAD~1
             fi
 
-            echo "🐳 Restarting services with old code..."
-            docker compose -f docker-compose.yml -f docker-compose.prod.yml down
+            echo "🚀 Restarting services with previous code..."
             docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
             echo "✅ Rollback complete"
