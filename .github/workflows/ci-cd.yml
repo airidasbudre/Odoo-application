@@ -292,10 +292,10 @@ jobs:
             docker compose -f docker-compose.yml -f docker-compose.prod.yml pull
 
             echo "⏸️  Stopping services gracefully..."
-            docker compose -f docker-compose.yml -f docker-compose.prod.yml down --timeout 30
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml down --timeout 30 --remove-orphans
 
             echo "🚀 Starting services with new code..."
-            docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --remove-orphans
 
             echo "⏳ Waiting for services to initialize..."
             sleep 45
@@ -348,7 +348,7 @@ jobs:
             cd /home/ubuntu
 
             echo "⏸️  Stopping services..."
-            docker compose -f docker-compose.yml -f docker-compose.prod.yml down --timeout 30
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml down --timeout 30 --remove-orphans
 
             # Restore database from the backup taken before this deployment
             LATEST_BACKUP=$(ls -t /home/ubuntu/backup-prod-*.sql.gz 2>/dev/null | head -1)
