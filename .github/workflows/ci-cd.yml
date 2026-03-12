@@ -123,8 +123,22 @@ jobs:
         run: |
           LATEST=$(aws s3 ls s3://odoo-terraform-state/backups/ | sort | tail -1 | awk '{print $4}')
           NEW_IP=$(terraform -chdir=terraform output -raw ec2_public_ip)
-          ssh ubuntu@$NEW_IP \
-            "aws s3 cp s3://odoo-terraform-state/backups/$LATEST - | gunzip | docker exec -i postgres-db psql -U odoo odoo"
+          ssh ubuntu@$NEW_IP << ENDSSH
+            set -e
+
+            echo "⏳ Waiting for database to be ready..."
+            for i in \$(seq 1 12); do
+              if docker exec odoo-db pg_isready -U odoo 2>/dev/null; then break; fi
+              sleep 5
+            done
+
+            docker exec odoo-db psql -U odoo postgres -c \
+              "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'odoo_db' AND pid <> pg_backend_pid();" || true
+            docker exec odoo-db psql -U odoo postgres -c "DROP DATABASE IF EXISTS odoo_db;"
+            docker exec odoo-db psql -U odoo postgres -c "CREATE DATABASE odoo_db OWNER odoo;"
+
+            aws s3 cp s3://odoo-terraform-state/backups/$LATEST - | gunzip | docker exec -i odoo-db psql -U odoo odoo_db
+          ENDSSH
 
       - name: Start services on new server
         run: |
@@ -393,7 +407,22 @@ jobs:
             if [ -n "$LATEST_BACKUP" ]; then
               echo "🗄️  Restoring database from: $LATEST_BACKUP"
               docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d db
-              sleep 10
+
+              echo "⏳ Waiting for database to be ready..."
+              for i in $(seq 1 12); do
+                if docker exec odoo-db pg_isready -U odoo 2>/dev/null; then
+                  echo "✅ Database is ready"
+                  break
+                fi
+                sleep 5
+              done
+
+              echo "🧹 Dropping and recreating database for clean restore..."
+              docker exec odoo-db psql -U odoo postgres -c \
+                "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'odoo_db' AND pid <> pg_backend_pid();" || true
+              docker exec odoo-db psql -U odoo postgres -c "DROP DATABASE IF EXISTS odoo_db;"
+              docker exec odoo-db psql -U odoo postgres -c "CREATE DATABASE odoo_db OWNER odoo;"
+
               gunzip -c "$LATEST_BACKUP" | docker exec -i odoo-db psql -U odoo odoo_db
               echo "✅ Database restored"
             else
