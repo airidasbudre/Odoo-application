@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # PostgreSQL Database - Optimized for t3.small (2GB RAM)
   db:

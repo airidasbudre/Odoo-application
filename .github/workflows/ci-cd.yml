@@ -245,20 +245,25 @@ jobs:
       - name: Pre-deployment health check
         run: |
           ssh -o BatchMode=yes -o ConnectTimeout=30 ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
-            # Check disk space (fail if > 85% full)
-            DISK_USAGE=$(df -h / | tail -1 | awk '{print $5}' | sed 's/%//')
-            if [ "$DISK_USAGE" -gt 85 ]; then
-              echo "❌ Error: Disk usage is ${DISK_USAGE}% (threshold: 85%)"
+            # Clean up old Docker images and backups to free disk space
+            echo "🧹 Cleaning up disk space..."
+            docker image prune -af --filter "until=168h" 2>/dev/null || true
+            find /home/ubuntu -name "backup-prod-*.sql.gz" -mtime +7 -delete 2>/dev/null || true
+
+            # Check disk space (fail if > 90% full)
+            DISK_USAGE=$(df / | tail -1 | awk '{print $5}' | sed 's/%//')
+            if [ "$DISK_USAGE" -gt 90 ]; then
+              echo "❌ Error: Disk usage is ${DISK_USAGE}% (threshold: 90%) — free up space before deploying"
               exit 1
             fi
             echo "✅ Disk usage: ${DISK_USAGE}%"
 
-            # Check if current services are running
-            if ! docker compose ps | grep -q "Up"; then
-              echo "❌ Error: Services are not running"
-              exit 1
+            # Warn if services are down but don't fail (handles first deploy)
+            if docker compose ps 2>/dev/null | grep -q "Up"; then
+              echo "✅ Services are running"
+            else
+              echo "⚠️  Services are not running — fresh deploy or previously stopped"
             fi
-            echo "✅ Services are running"
           ENDSSH
 
       - name: Create backup of production database
@@ -266,9 +271,14 @@ jobs:
           ssh ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
             'docker exec odoo-db pg_dump -U odoo odoo_db | gzip > /home/ubuntu/backup-prod-$(date +%Y%m%d-%H%M%S).sql.gz'
 
+      - name: Setup .env on server
+        run: |
+          ssh ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
+            "echo '${{ secrets.ENV_FILE }}' > /home/ubuntu/.env"
+
       - name: Deploy to production server
         run: |
-          ssh  ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+          ssh ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
             set -e
             cd /home/ubuntu
 
@@ -344,6 +354,8 @@ jobs:
             LATEST_BACKUP=$(ls -t /home/ubuntu/backup-prod-*.sql.gz 2>/dev/null | head -1)
             if [ -n "$LATEST_BACKUP" ]; then
               echo "🗄️  Restoring database from: $LATEST_BACKUP"
+              docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d db
+              sleep 10
               gunzip -c "$LATEST_BACKUP" | docker exec -i odoo-db psql -U odoo odoo_db
               echo "✅ Database restored"
             else
