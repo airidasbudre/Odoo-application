@@ -1,0 +1,17 @@
+Migration Info - Thu Mar  5 01:00:03 UTC 2026
+========================
+Source Account:   723977204493
+Target Account:   623859664395
+Current Server:   i-0a1180c1b6b9849c5 (t3.small)
+Current IP:       13.50.101.111
+Latest Backup:    s3://odoo-terraform-state-723977204493/backups/odoo-20260305-005956.sql.gz
+Backup Region:    eu-north-1
+Terraform State:  s3://odoo-terraform-state-723977204493/odoo/terraform.tfstate
+========================
+Next Steps:
+1. In new AWS account - run: terraform apply
+2. Restore backup:    aws s3 cp s3://odoo-terraform-state-723977204493/backups/odoo-20260305-005956.sql.gz - | gunzip | docker exec -i odoo-db psql -U odoo postgres
+3. Start services:    docker compose up -d
+4. Verify Odoo works at new server IP
+5. Update DNS to new server IP
+6. Decommission this server

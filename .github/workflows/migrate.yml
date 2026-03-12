@@ -1,0 +1,103 @@
+name: Cross-Account Migration
+
+on:
+  workflow_dispatch:
+    inputs:
+      new_account_id:
+        description: 'New AWS Account ID to migrate to'
+        required: true
+      confirm:
+        description: 'Type MIGRATE to confirm'
+        required: true
+
+jobs:
+  validate:
+    name: Validate Input
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check confirmation
+        run: |
+          if [ "${{ github.event.inputs.confirm }}" != "MIGRATE" ]; then
+            echo "Confirmation failed. Type MIGRATE to proceed."
+            exit 1
+          fi
+          echo "Confirmed. Starting migration preparation..."
+
+  prepare:
+    name: Prepare Migration
+    runs-on: ubuntu-latest
+    needs: validate
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add server to known hosts
+        run: ssh-keyscan -H ${{ secrets.PRODUCTION_SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Run migration preparation on server
+        run: |
+          ssh ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
+            "bash /home/ubuntu/scripts/prepare-migration.sh ${{ github.event.inputs.new_account_id }}"
+
+      - name: Show migration info
+        run: |
+          ssh ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
+            "cat /home/ubuntu/migration-info.txt"
+
+  provision-new-server:
+    name: Provision New Server (run manually in new account)
+    runs-on: ubuntu-latest
+    needs: prepare
+    if: false  # Enable this step manually when ready to provision
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure new AWS account credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.NEW_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.NEW_AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-north-1
+
+      - name: Terraform apply in new account
+        working-directory: terraform/
+        run: |
+          terraform init
+          terraform apply -auto-approve
+
+      - name: Get new server IP
+        working-directory: terraform/
+        run: |
+          NEW_IP=$(terraform output -raw ec2_public_ip)
+          echo "NEW_SERVER_IP=$NEW_IP" >> $GITHUB_ENV
+          echo "New server IP: $NEW_IP"
+
+      - name: Restore backup on new server
+        run: |
+          BUCKET="odoo-terraform-state-723977204493"
+          REGION="eu-north-1"
+          LATEST=$(aws s3 ls s3://$BUCKET/backups/ --region $REGION | sort | tail -1 | awk '{print $4}')
+
+          ssh ubuntu@${{ env.NEW_SERVER_IP }} \
+            "aws s3 cp s3://$BUCKET/backups/$LATEST - \
+            --region $REGION | gunzip | docker exec -i odoo-db psql -U odoo postgres"
+
+      - name: Start services on new server
+        run: |
+          ssh ubuntu@${{ env.NEW_SERVER_IP }} \
+            "cd /home/ubuntu && docker compose up -d"
+
+      - name: Verify new server
+        run: |
+          sleep 30
+          curl -f http://${{ env.NEW_SERVER_IP }}:8069/web/database/selector || exit 1
+          echo "New server is running. Update DNS to ${{ env.NEW_SERVER_IP }}"

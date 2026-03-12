@@ -1,0 +1,68 @@
+# Git
+.git
+.gitignore
+.github
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+.venv
+venv/
+ENV/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Odoo
+*.log
+odoo_backup.dump
+odoo_migration_package.tar.gz
+
+# Monitoring data (don't include in image)
+monitoring/grafana/
+monitoring/prometheus/data/
+
+# Documentation
+*.md
+!README.md
+
+# Cache
+.cache/
+.npm/
+.nvm/
+
+# System files
+.bash_history
+.bash_logout
+.bashrc
+.profile
+.wget-hsts
+.sudo_as_admin_successful
+
+# SSH and configs
+.ssh/
+.kube/
+.minikube/
+.dotnet/
+.config/
+.claude/
+
+# Temporary files
+*.tmp
+*.temp

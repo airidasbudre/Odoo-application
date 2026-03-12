@@ -1,0 +1,15 @@
+# AWS Configuration
+  aws_region  = "us-east-1"
+  environment = "production"
+  project_name = "odoo"
+
+  # Network Configuration
+  vpc_cidr = "10.0.0.0/16"
+
+  # EC2 Configuration
+  instance_type = "t3.small"
+  ami_id        = "ami-0c7217cdde317cfec"  # Ubuntu 22.04 LTS in us-east-1
+  key_name      = "your-ssh-key-name"      # CHANGE THIS
+
+  # SSH Access - CHANGE THIS to your IP
+  my_ip = "13.50.110.148"

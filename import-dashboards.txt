@@ -1,0 +1,20 @@
+==============================================
+IMPORT DASHBOARDS TO GRAFANA - INSTRUCTIONS
+==============================================
+
+Go to: http://16.16.110.126:3000
+
+METHOD 1: Import from File
+----------------------------
+1. Click the "+" icon → "Import dashboard"
+2. Click "Upload JSON file"
+3. Import these files one by one:
+   - /home/ubuntu/monitoring/grafana/provisioning/dashboards/postgresql-dashboard.json
+   - /home/ubuntu/monitoring/grafana/provisioning/dashboards/odoo-overview.json
+4. Select "Prometheus" as datasource
+5. Click "Import"
+
+METHOD 2: Copy & Paste JSON
+----------------------------
+I'll show you the JSON content to copy/paste directly...
+

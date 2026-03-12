@@ -1,0 +1,397 @@
+name: Odoo CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 2 * * *'  # daily at 2am UTC
+
+env:
+  DOCKER_REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+permissions:
+    contents: read
+    packages: write
+    security-events: write
+
+jobs:
+  lint-and-test:
+    name: Lint and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pylint black isort
+
+      - name: Lint with flake8
+        continue-on-error: true
+        run: |
+          flake8 addons/ --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 addons/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+      - name: Check code formatting with Black
+        continue-on-error: true
+        run: |
+          black --check addons/ || true
+
+      - name: Validate docker-compose configuration
+        run: |
+          docker compose config
+
+  build:
+    name: Build Docker Images
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Container Registry
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.DOCKER_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  migrate:
+    name: Migrate to New Server
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Backup database before migration
+        run: |
+          ssh ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
+            '/home/ubuntu/scripts/backup.sh'
+
+      - name: Apply new infrastructure
+        working-directory: terraform/
+        run: |
+          terraform init
+          terraform apply -auto-approve
+
+      - name: Restore latest backup on new server
+        run: |
+          LATEST=$(aws s3 ls s3://odoo-terraform-state/backups/ | sort | tail -1 | awk '{print $4}')
+          NEW_IP=$(terraform -chdir=terraform output -raw ec2_public_ip)
+          ssh ubuntu@$NEW_IP \
+            "aws s3 cp s3://odoo-terraform-state/backups/$LATEST - | gunzip | docker exec -i postgres-db psql -U odoo odoo"
+
+      - name: Start services on new server
+        run: |
+          NEW_IP=$(terraform -chdir=terraform output -raw ec2_public_ip)
+          ssh ubuntu@$NEW_IP 'cd /home/ubuntu && docker compose up -d'
+
+  security-scan:
+    name: Security Vulnerability Scan
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v4
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [build, security-scan]
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    environment:
+      name: staging
+      url: https://staging.yourdomain.com
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add server to known hosts
+        run: ssh-keyscan -H ${{ secrets.STAGING_SERVER_IP }} >> ~/.ssh/known_hosts 2>&1
+
+      - name: Create backup of current database
+        run: |
+          ssh ubuntu@${{ secrets.STAGING_SERVER_IP }} 'docker exec postgres-db pg_dump -U odoo odoo > /backup/odoo-backup-$(date +%Y%m%d-%H%M%S).sql'
+
+      - name: Deploy to staging server
+        run: |
+          ssh ubuntu@${{ secrets.STAGING_SERVER_IP }} << 'ENDSSH'
+            set -e
+            cd /home/ubuntu
+
+            # Pull latest changes
+            git pull origin develop
+
+            # Pull latest Docker images
+            docker compose pull
+
+            # Stop services gracefully
+            docker compose down
+
+            # Start services with new images
+            docker compose up -d
+
+            # Wait for services to be healthy
+            sleep 30
+
+            # Check if Odoo is responding
+            curl -f http://localhost:8069/web/database/selector || exit 1
+          ENDSSH
+
+      - name: Verify deployment
+        run: |
+          sleep 10
+          curl -f https://staging.yourdomain.com/web/database/selector || exit 1
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [build, security-scan]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: production
+      url: https://yourdomain.com
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add server to known hosts
+        run: ssh-keyscan -H ${{ secrets.PRODUCTION_SERVER_IP }} >> ~/.ssh/known_hosts 2>&1
+
+      - name: Test SSH connection
+        run: |
+          echo "Testing SSH connection..."
+          ssh -o BatchMode=yes -o ConnectTimeout=10 ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} "echo 'SSH connection successful'"
+
+      - name: Pre-deployment health check
+        run: |
+          ssh -o BatchMode=yes -o ConnectTimeout=30 ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+            # Check disk space (fail if > 85% full)
+            DISK_USAGE=$(df -h / | tail -1 | awk '{print $5}' | sed 's/%//')
+            if [ "$DISK_USAGE" -gt 85 ]; then
+              echo "❌ Error: Disk usage is ${DISK_USAGE}% (threshold: 85%)"
+              exit 1
+            fi
+            echo "✅ Disk usage: ${DISK_USAGE}%"
+
+            # Check if current services are running
+            if ! docker compose ps | grep -q "Up"; then
+              echo "❌ Error: Services are not running"
+              exit 1
+            fi
+            echo "✅ Services are running"
+          ENDSSH
+
+      - name: Create backup of production database
+        run: |
+          ssh  ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
+            'docker exec postgres-db pg_dump -U odoo odoo | gzip > /home/ubuntu/backup-prod-$(date +%Y%m%d-%H%M%S).sql.gz'
+
+      - name: Deploy to production server
+        run: |
+          ssh  ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+            set -e
+            cd /home/ubuntu
+
+            echo "📝 Saving current commit for rollback..."
+            git rev-parse HEAD > .last_deploy_commit
+
+            echo "📥 Pulling latest code from main branch..."
+            git pull origin main
+
+            echo "🐳 Pulling latest Docker images..."
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml pull
+
+            echo "⏸️  Stopping services gracefully..."
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml down --timeout 30
+
+            echo "🚀 Starting services with new code..."
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+            echo "⏳ Waiting for services to initialize..."
+            sleep 45
+
+            echo "🏥 Running health checks..."
+            MAX_ATTEMPTS=12
+            ATTEMPT=0
+
+            while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+              if curl -f http://localhost:8069/web/database/selector 2>/dev/null; then
+                echo "✅ Odoo is responding (attempt $((ATTEMPT + 1)))"
+                exit 0
+              fi
+              ATTEMPT=$((ATTEMPT + 1))
+              echo "⏳ Waiting for Odoo... (attempt $ATTEMPT/$MAX_ATTEMPTS)"
+              sleep 10
+            done
+
+            echo "❌ Odoo failed to start after $MAX_ATTEMPTS attempts"
+            exit 1
+          ENDSSH
+
+      - name: Verify external access
+        run: |
+          echo "🌐 Verifying external access..."
+          sleep 10
+
+          MAX_ATTEMPTS=6
+          ATTEMPT=0
+
+          while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+            if curl -f http://${{ secrets.PRODUCTION_SERVER_IP }}:8069/web/database/selector 2>/dev/null; then
+              echo "✅ Production is accessible from external network"
+              exit 0
+            fi
+            ATTEMPT=$((ATTEMPT + 1))
+            echo "⏳ Verifying external access... (attempt $ATTEMPT/$MAX_ATTEMPTS)"
+            sleep 10
+          done
+
+          echo "❌ External access verification failed"
+          exit 1
+
+      - name: Rollback on failure
+        if: failure()
+        run: |
+          echo "🔄 Deployment failed! Initiating rollback..."
+          ssh  ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+            cd /home/ubuntu
+
+            if [ -f .last_deploy_commit ]; then
+              echo "📝 Restoring previous commit: $(cat .last_deploy_commit)"
+              git reset --hard $(cat .last_deploy_commit)
+            else
+              echo "⚠️  No previous commit found, trying HEAD~1"
+              git reset --hard HEAD~1
+            fi
+
+            echo "🐳 Restarting services with old code..."
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml down
+            docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+            echo "✅ Rollback complete"
+          ENDSSH
+
+      - name: Cleanup old Docker resources
+        if: success()
+        run: |
+          ssh  ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+            echo "🧹 Cleaning up old Docker images..."
+            docker image prune -af --filter "until=168h" || true
+            echo "✅ Cleanup complete"
+          ENDSSH
+
+  backup:
+    name: Backup Database
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+
+    steps:
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add server to known hosts
+        run: ssh-keyscan -H ${{ secrets.PRODUCTION_SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Run backup on server
+        run: |
+          ssh ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
+            '/home/ubuntu/scripts/backup.sh'
+
+      - name: Verify backup was uploaded to S3
+        run: |
+          ssh ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} \
+            'aws s3 ls s3://odoo-terraform-state-723977204493/backups/ --region eu-north-1 | tail -5'
+
+  notify:
+    name: Notification
+    runs-on: ubuntu-latest
+    needs: [deploy-staging, deploy-production]
+    if: always()
+
+    steps:
+      - name: Send notification
+        run: |
+          echo "Pipeline completed. Status: ${{ job.status }}"
+          # Add notification logic (Slack, Discord, Email, etc.)

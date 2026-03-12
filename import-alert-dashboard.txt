@@ -1,0 +1,36 @@
+========================================
+VIEW YOUR ALERTS IN PROMETHEUS & GRAFANA
+========================================
+
+STEP 1: Check Alerts in Prometheus
+-----------------------------------
+1. Go to: http://16.16.110.126:9090
+2. Click "Alerts" in the top menu
+3. You'll see all configured alerts:
+   - System Alerts (CPU, Memory, Disk)
+   - Database Alerts (PostgreSQL)
+   - Application Alerts (Odoo)
+
+STEP 2: Import Alert Dashboard in Grafana
+------------------------------------------
+1. Go to: http://16.16.110.126:3000
+2. Click "+" → "Import"
+3. Enter Dashboard ID: 15398
+4. Click "Load"
+5. Select "Prometheus" as datasource
+6. Click "Import"
+
+This dashboard shows:
+- Active Alerts
+- Alert History
+- System Health Overview
+- Alert Trends
+
+STEP 3: Test an Alert (Optional)
+---------------------------------
+Create a test file to fill disk space:
+  dd if=/dev/zero of=/tmp/testfile bs=1M count=1000
+
+Then check Prometheus alerts after 5 minutes.
+Don't forget to delete it: rm /tmp/testfile
+
