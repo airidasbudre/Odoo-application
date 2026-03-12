@@ -17,7 +17,7 @@ services:
     mem_limit: 512m
     mem_reservation: 256m
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-odoo}"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -43,11 +43,12 @@ services:
     networks:
       - odoo-network
     restart: unless-stopped
-    # Memory limits for t3.small
-    mem_limit: 1280m
-    mem_reservation: 768m
-    # 2 workers for better performance with 2 vCPUs
-    command: ["--workers=2", "--max-cron-threads=1", "--limit-memory-hard=1342177280", "--limit-memory-soft=1073741824"]
+    # Memory limits for t3.small (2GB total — keep headroom for other containers)
+    mem_limit: 900m
+    mem_reservation: 512m
+    # workers=0 = single-threaded mode, required on low-memory instances
+    # Multi-worker mode uses ~400MB per worker and causes OOM on t3.small
+    command: ["--workers=0", "--max-cron-threads=1", "--limit-memory-hard=805306368", "--limit-memory-soft=671088640"]
 
   # Prometheus - Metrics Collection
   prometheus:
