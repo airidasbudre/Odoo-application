@@ -182,6 +182,23 @@ jobs:
       - name: Add server to known hosts
         run: ssh-keyscan -H ${{ secrets.STAGING_SERVER_IP }} >> ~/.ssh/known_hosts 2>&1
 
+      - name: Ensure database container is running before backup
+        run: |
+          ssh ubuntu@${{ secrets.STAGING_SERVER_IP }} << 'ENDSSH'
+            cd /home/ubuntu
+            if ! docker ps --filter "name=odoo-db" --filter "status=running" --format '{{.Names}}' | grep -q "odoo-db"; then
+              echo "⚠️  odoo-db not running — starting database container..."
+              docker compose up -d db
+              for i in $(seq 1 12); do
+                if docker exec odoo-db pg_isready -U odoo 2>/dev/null; then
+                  echo "✅ Database is ready"
+                  break
+                fi
+                sleep 5
+              done
+            fi
+          ENDSSH
+
       - name: Create backup of current database
         run: |
           ssh ubuntu@${{ secrets.STAGING_SERVER_IP }} 'docker exec odoo-db pg_dump -U odoo odoo_db | gzip > /home/ubuntu/backup-staging-$(date +%Y%m%d-%H%M%S).sql.gz'
@@ -263,6 +280,27 @@ jobs:
               echo "✅ Services are running"
             else
               echo "⚠️  Services are not running — fresh deploy or previously stopped"
+            fi
+          ENDSSH
+
+      - name: Ensure database container is running before backup
+        run: |
+          ssh ubuntu@${{ secrets.PRODUCTION_SERVER_IP }} << 'ENDSSH'
+            cd /home/ubuntu
+            if ! docker ps --filter "name=odoo-db" --filter "status=running" --format '{{.Names}}' | grep -q "odoo-db"; then
+              echo "⚠️  odoo-db not running — starting database container..."
+              docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d db
+              echo "⏳ Waiting for database to be healthy..."
+              for i in $(seq 1 12); do
+                if docker exec odoo-db pg_isready -U odoo 2>/dev/null; then
+                  echo "✅ Database is ready"
+                  break
+                fi
+                echo "⏳ Waiting... ($i/12)"
+                sleep 5
+              done
+            else
+              echo "✅ odoo-db is already running"
             fi
           ENDSSH
 
