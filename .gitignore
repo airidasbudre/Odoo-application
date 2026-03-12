@@ -12,12 +12,14 @@ __pycache__/
 *.mo
 .vscode/
 .idea/
+odoo_filestore/
 
 # Database backups
 *.dump
 *.sql
 *.backup
 *.tar.gz
+*.sql.gz
 
 # Docker volumes (data managed by Docker)
 odoo-web-data/
