@@ -10,7 +10,7 @@ DB_NAME="odoo_db"
 KEEP_BACKUPS=30
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 BACKUP_KEY="backups/odoo-${TIMESTAMP}.sql.gz"
-LOG="/var/log/odoo-backup.log"
+LOG="$HOME/odoo-backup.log"
 # ──────────────────────────────────────────────────────────
 
 echo "[$(date)] Starting backup..." | tee -a $LOG

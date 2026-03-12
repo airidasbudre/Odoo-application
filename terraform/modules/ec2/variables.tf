@@ -38,3 +38,8 @@ variable "common_tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "backup_bucket" {
+  description = "S3 bucket name for database backups"
+  type        = string
+}

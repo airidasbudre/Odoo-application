@@ -42,4 +42,5 @@
     project_name        = var.project_name
     environment         = var.environment
     common_tags         = local.common_tags
+    backup_bucket       = "odoo-terraform-state-723977204493"
   }
