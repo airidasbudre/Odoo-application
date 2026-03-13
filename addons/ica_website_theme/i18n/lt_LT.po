@@ -412,6 +412,125 @@ msgid "Aerial Videography Sample"
 msgstr "Oro vaizdo įrašų pavyzdys"
 
 #. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Aerial Video"
+msgstr "Oro vaizdo įrašas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Aerial Videography Showcase"
+msgstr "Oro vaizdo įrašų pristatymas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"Aerial drone operations across Lithuania and Latvia for a BBC Two historical "
+"documentary exploring the origins of the Holocaust. Our team provided key "
+"aerial footage capturing significant memorial and historical sites."
+msgstr ""
+"Oro dronų operacijos visoje Lietuvoje ir Latvijoje BBC Two istoriniam "
+"dokumentiniam filmui, tyrinėjančiam holokausto ištakas. Mūsų komanda "
+"suteikė pagrindinę oro vaizdo medžiagą, užfiksuodama svarbias atminimo ir "
+"istorines vietas."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"Aerial promotional video for a company showcasing their completed fountain "
+"and lighting installation project. Drone footage highlights the scale and "
+"beauty of the finished work at night."
+msgstr ""
+"Reklaminis oro vaizdo įrašas įmonei, pristatančiai savo užbaigtą fontano ir "
+"apšvietimo įrengimo projekto pristatymą. Drono vaizdo medžiaga pabrėžia "
+"baigto darbo mastą ir grožį naktį."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"Promotional video for a cemetery cleaning and restoration service, filmed "
+"from the air during winter. The drone captured the cleaning process in "
+"progress with the grounds covered in snow, creating a striking and memorable "
+"visual for the campaign."
+msgstr ""
+"Reklaminis vaizdo įrašas kapinių valymo ir atnaujinimo paslaugai, filmuotas "
+"iš oro žiemą. Dronas užfiksavo valymo procesą vykstantį žemėje, padengtoje "
+"sniegu, sukuriant ryškų ir įsimintiną vaizdą kampanijai."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "BBC Two Documentary — How the Holocaust Began"
+msgstr "BBC Two dokumentinis filmas — Kaip prasidėjo holokaustas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Cemetery Restoration Service — Winter Aerial Ad"
+msgstr "Kapinių atnaujinimo paslauga — žiemos oro reklama"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Fountain &amp; Lighting Installation — Commercial Showcase"
+msgstr "Fontano ir apšvietimo įrengimas — komercinis pristatymas"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"Professional aerial footage showcasing our drone videography capabilities."
+msgstr ""
+"Profesionali oro vaizdo medžiaga, pristatanti mūsų dronų filmavimo "
+"galimybes."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid "Stunning aerial footage captured by our professional drone team."
+msgstr ""
+"Nuostabi oro vaizdo medžiaga, užfiksuota mūsų profesionalios dronų komandos."
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"<span class=\"badge bg-primary\">Advertising</span>\n"
+"                                        <span class=\"badge bg-secondary\">Videography</span>"
+msgstr ""
+"<span class=\"badge bg-primary\">Reklama</span>\n"
+"                                        <span class=\"badge bg-secondary\">Vaizdo įrašai</span>"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"<span class=\"badge bg-primary\">Documentary</span>\n"
+"                                        <span class=\"badge bg-secondary\">BBC Two</span>"
+msgstr ""
+"<span class=\"badge bg-primary\">Dokumentika</span>\n"
+"                                        <span class=\"badge bg-secondary\">BBC Two</span>"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"<span class=\"badge bg-primary\">Showcase</span>\n"
+"                                        <span class=\"badge bg-secondary\">Videography</span>"
+msgstr ""
+"<span class=\"badge bg-primary\">Pristatymas</span>\n"
+"                                        <span class=\"badge bg-secondary\">Vaizdo įrašai</span>"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"<span class=\"badge bg-primary\">Aerial</span>\n"
+"                                        <span class=\"badge bg-secondary\">Videography</span>"
+msgstr ""
+"<span class=\"badge bg-primary\">Oras</span>\n"
+"                                        <span class=\"badge bg-secondary\">Vaizdo įrašai</span>"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
+msgid ""
+"<span class=\"badge bg-primary\">Advertising</span>\n"
+"                                        <span class=\"badge bg-secondary\">Winter Aerial</span>"
+msgstr ""
+"<span class=\"badge bg-primary\">Reklama</span>\n"
+"                                        <span class=\"badge bg-secondary\">Žiemos oro vaizdai</span>"
+
+#. module: ica_website_theme
 #: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
 #: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
 msgid "Agricultural Survey"
@@ -584,6 +703,7 @@ msgstr "Renginių aprėptis"
 
 #. module: ica_website_theme
 #: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
 msgid "Experience"
 msgstr "Patirtis"
 
@@ -595,6 +715,12 @@ msgid ""
 msgstr ""
 "Tyrinėkite mūsų nuostabių oro fotografijos, vaizdo įrašų ir žemėlapių "
 "sudarymo projektų kolekciją"
+
+#. module: ica_website_theme
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
+#: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_homepage
+msgid "EASA License"
+msgstr "EASA licencija"
 
 #. module: ica_website_theme
 #: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
@@ -676,8 +802,8 @@ msgstr "Pradžia"
 
 #. module: ica_website_theme
 #: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
-msgid "John Doe"
-msgstr "John Doe"
+msgid "Vardenis Pavardenis"
+msgstr "Vardenis Pavardenis"
 
 #. module: ica_website_theme
 #: model_terms:ir.ui.view,arch_db:ica_website_theme.portfolio_page
@@ -1010,8 +1136,8 @@ msgstr "Jūsų vardas <span class=\"text-danger\">*</span>"
 
 #. module: ica_website_theme
 #: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus
-msgid "john@example.com"
-msgstr "john@example.com"
+msgid "vardenis@pavyzdys.lt"
+msgstr "vardenis@pavyzdys.lt"
 
 #. module: ica_website_theme
 #: model_terms:ir.ui.view,arch_db:ica_website_theme.custom_contactus

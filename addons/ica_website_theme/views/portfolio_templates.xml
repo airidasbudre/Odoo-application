@@ -94,48 +94,61 @@
                             <div class="col-md-4 mb-4">
                                 <div class="portfolio-card">
                                     <div class="portfolio-image">
-                                        <div class="placeholder-portfolio">
-                                            <i class="fa fa-film fa-4x"></i>
-                                            <p class="mt-3">Construction Time-lapse</p>
+                                        <div class="ratio ratio-16x9">
+                                            <iframe src="https://www.youtube.com/embed/3WCHwkobDHc" title="Komercinis vaizdo įrašas" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
                                         </div>
                                     </div>
                                     <div class="portfolio-info">
-                                        <h4>Construction Progress Video</h4>
-                                        <p class="mb-2">6-month time-lapse video documenting the complete construction of a major development project.</p>
-                                        <span class="badge bg-primary">Construction</span>
-                                        <span class="badge bg-secondary">Videography</span>
+                                        <h4>Fountain &amp; Lighting Installation — Commercial Showcase</h4>
+                                        <p class="mb-2">Aerial promotional video for a company showcasing their completed fountain and lighting installation project. Drone footage highlights the scale and beauty of the finished work at night.</p>
+                                        <span class="badge bg-primary">Commercial</span>
+                                        <span class="badge bg-secondary">Advertising</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4 mb-4">
                                 <div class="portfolio-card">
                                     <div class="portfolio-image">
-                                        <div class="placeholder-portfolio">
-                                            <i class="fa fa-play-circle fa-4x"></i>
-                                            <p class="mt-3">Commercial Promo</p>
+                                        <div class="ratio ratio-16x9 dm-facade" data-video-id="x9jmfow" style="cursor:pointer;background:#000;">
+                                            <img src="https://www.dailymotion.com/thumbnail/video/x9jmfow" alt="Aerial Videography" style="width:100%;height:100%;object-fit:cover;opacity:0.8;"/>
+                                            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;background:rgba(0,0,0,0.7);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                                                <i class="fa fa-play fa-2x text-white" style="margin-left:6px;"/>
+                                            </div>
                                         </div>
                                     </div>
+                                    <script>
+                                        document.querySelectorAll('.dm-facade').forEach(function(el) {
+                                            el.addEventListener('click', function() {
+                                                var id = el.dataset.videoId;
+                                                var iframe = document.createElement('iframe');
+                                                iframe.src = 'https://www.dailymotion.com/embed/video/' + id + '?autoplay=1';
+                                                iframe.allowFullscreen = true;
+                                                iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
+                                                el.innerHTML = '';
+                                                el.appendChild(iframe);
+                                            });
+                                        });
+                                    </script>
                                     <div class="portfolio-info">
-                                        <h4>Commercial Promotional Video</h4>
-                                        <p class="mb-2">Cinematic aerial footage for a high-impact commercial promotional campaign.</p>
-                                        <span class="badge bg-primary">Marketing</span>
-                                        <span class="badge bg-secondary">Videography</span>
+                                        <h4>BBC Two Documentary — How the Holocaust Began</h4>
+                                        <p class="mb-2">Aerial drone operations across Lithuania and Latvia for a BBC Two historical documentary exploring the origins of the Holocaust. Our team provided key aerial footage capturing significant memorial and historical sites.</p>
+                                        <span class="badge bg-primary">Documentary</span>
+                                        <span class="badge bg-secondary">BBC Two</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4 mb-4">
                                 <div class="portfolio-card">
                                     <div class="portfolio-image">
-                                        <div class="placeholder-portfolio">
-                                            <i class="fa fa-calendar fa-4x"></i>
-                                            <p class="mt-3">Event Coverage</p>
+                                        <div class="ratio ratio-16x9">
+                                            <iframe src="https://www.youtube.com/embed/0X2VH7QuLU8" title="Aerial Video" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
                                         </div>
                                     </div>
                                     <div class="portfolio-info">
-                                        <h4>Special Event Coverage</h4>
-                                        <p class="mb-2">Dynamic aerial videography capturing the scale and atmosphere of large-scale events.</p>
-                                        <span class="badge bg-primary">Events</span>
-                                        <span class="badge bg-secondary">Videography</span>
+                                        <h4>Cemetery Restoration Service — Winter Aerial Ad</h4>
+                                        <p class="mb-2">Promotional video for a cemetery cleaning and restoration service, filmed from the air during winter. The drone captured the cleaning process in progress with the grounds covered in snow, creating a striking and memorable visual for the campaign.</p>
+                                        <span class="badge bg-primary">Advertising</span>
+                                        <span class="badge bg-secondary">Winter Aerial</span>
                                     </div>
                                 </div>
                             </div>

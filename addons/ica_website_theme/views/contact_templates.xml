@@ -83,11 +83,11 @@
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="contact_name" class="form-label">Your Name <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="contact_name" name="name" required="required" placeholder="John Doe"/>
+                                                <input type="text" class="form-control" id="contact_name" name="name" required="required" placeholder="Vardenis Pavardenis"/>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="contact_email" class="form-label">Email Address <span class="text-danger">*</span></label>
-                                                <input type="email" class="form-control" id="contact_email" name="email_from" required="required" placeholder="john@example.com"/>
+                                                <input type="email" class="form-control" id="contact_email" name="email_from" required="required" placeholder="vardenis@pavyzdys.lt"/>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -132,29 +132,25 @@
                             <div class="col-md-3 mb-4">
                                 <div class="feature-box">
                                     <i class="fa fa-shield fa-3x text-primary mb-3"></i>
-                                    <h5>FAA Certified</h5>
-                                    <p class="text-muted">Licensed &amp; Insured</p>
+                                    <h5> EASA License</h5>
                                 </div>
                             </div>
                             <div class="col-md-3 mb-4">
                                 <div class="feature-box">
                                     <i class="fa fa-clock-o fa-3x text-primary mb-3"></i>
                                     <h5>Fast Response</h5>
-                                    <p class="text-muted">24-48 Hour Reply Time</p>
                                 </div>
                             </div>
                             <div class="col-md-3 mb-4">
                                 <div class="feature-box">
-                                    <i class="fa fa-money fa-3x text-primary mb-3"></i>
-                                    <h5>Free Quotes</h5>
-                                    <p class="text-muted">No Obligation Estimates</p>
+                                    <i class="fa fa-trophy fa-3x text-primary mb-3"></i>
+                                    <h5>Experience</h5>
                                 </div>
                             </div>
                             <div class="col-md-3 mb-4">
                                 <div class="feature-box">
                                     <i class="fa fa-star fa-3x text-primary mb-3"></i>
                                     <h5>Quality Assured</h5>
-                                    <p class="text-muted">Professional Results</p>
                                 </div>
                             </div>
                         </div>
