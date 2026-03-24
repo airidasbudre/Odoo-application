@@ -35,14 +35,12 @@
                             <div class="col-md-4 mb-4">
                                 <div class="portfolio-card">
                                     <div class="portfolio-image">
-                                        <div class="placeholder-portfolio">
-                                            <i class="fa fa-image fa-4x"></i>
-                                            <p class="mt-3">Luxury Property Showcase</p>
-                                        </div>
+                                        <img src="/ica_website_theme/static/src/img/pictures-1.jpg"
+                                             alt="Aerial Photography" class="img-fluid w-100" style="object-fit:cover;height:250px;"/>
                                     </div>
                                     <div class="portfolio-info">
-                                        <h4>Luxury Estate Aerial Views</h4>
-                                        <p class="mb-2">High-resolution aerial photography of a stunning 5-acre luxury estate, showcasing the property's unique features and surrounding landscape.</p>
+                                        <h4>Land Aerial Views</h4>
+                                        <p class="mb-2">High-resolution aerial land photography for real estate listings.</p>
                                         <span class="badge bg-primary">Real Estate</span>
                                         <span class="badge bg-secondary">Photography</span>
                                     </div>
@@ -145,7 +143,7 @@
                                         </div>
                                     </div>
                                     <div class="portfolio-info">
-                                        <h4>Cemetery Restoration Service — Winter Aerial Ad</h4>
+                                        <h4>Grave Cleaning Service — Winter Aerial Ad</h4>
                                         <p class="mb-2">Promotional video for a cemetery cleaning and restoration service, filmed from the air during winter. The drone captured the cleaning process in progress with the grounds covered in snow, creating a striking and memorable visual for the campaign.</p>
                                         <span class="badge bg-primary">Advertising</span>
                                         <span class="badge bg-secondary">Winter Aerial</span>
@@ -166,15 +164,13 @@
                             <div class="col-md-4 mb-4">
                                 <div class="portfolio-card">
                                     <div class="portfolio-image">
-                                        <div class="placeholder-portfolio">
-                                            <i class="fa fa-leaf fa-4x"></i>
-                                            <p class="mt-3">Agricultural Survey</p>
-                                        </div>
+                                        <img src="/ica_website_theme/static/src/img/kursiu_orthophoto.webp"
+                                             alt="Kursių orthophoto mosaic" class="img-fluid w-100" style="object-fit:cover;height:250px;"/>
                                     </div>
                                     <div class="portfolio-info">
-                                        <h4>500-Acre Farm Mapping</h4>
-                                        <p class="mb-2">Comprehensive orthophoto mapping of agricultural land with precise measurements for crop management.</p>
-                                        <span class="badge bg-primary">Agriculture</span>
+                                        <h4>Cemetery Orthophoto Mosaic</h4>
+                                        <p class="mb-2">High-resolution aerial orthophoto mosaic of the cemetery area with precise geo-referenced mapping.</p>
+                                        <span class="badge bg-primary">Orthophoto</span>
                                         <span class="badge bg-secondary">Mapping</span>
                                     </div>
                                 </div>
@@ -182,15 +178,13 @@
                             <div class="col-md-4 mb-4">
                                 <div class="portfolio-card">
                                     <div class="portfolio-image">
-                                        <div class="placeholder-portfolio">
-                                            <i class="fa fa-wrench fa-4x"></i>
-                                            <p class="mt-3">Construction Site Mapping</p>
-                                        </div>
+                                        <img src="/ica_website_theme/static/src/img/jurgiskiu_orthophoto.webp"
+                                             alt="Jurgiškių orthophoto mosaic" class="img-fluid w-100" style="object-fit:cover;height:250px;"/>
                                     </div>
                                     <div class="portfolio-info">
-                                        <h4>Construction Site Survey</h4>
-                                        <p class="mb-2">Detailed site mapping for construction planning with accurate topographical data and measurements.</p>
-                                        <span class="badge bg-primary">Construction</span>
+                                        <h4>Cemetery Orthophoto Mosaic</h4>
+                                        <p class="mb-2">Detailed orthophoto survey of cemetery delivering accurate aerial imagery for land analysis.</p>
+                                        <span class="badge bg-primary">Orthophoto</span>
                                         <span class="badge bg-secondary">Mapping</span>
                                     </div>
                                 </div>
@@ -198,16 +192,14 @@
                             <div class="col-md-4 mb-4">
                                 <div class="portfolio-card">
                                     <div class="portfolio-image">
-                                        <div class="placeholder-portfolio">
-                                            <i class="fa fa-globe fa-4x"></i>
-                                            <p class="mt-3">Land Management</p>
-                                        </div>
+                                        <img src="/ica_website_theme/static/src/img/gudakiemio_orthophoto.webp"
+                                             alt="Gudakiemio orthophoto mosaic" class="img-fluid w-100" style="object-fit:cover;height:250px;"/>
                                     </div>
                                     <div class="portfolio-info">
-                                        <h4>Land Management GIS Data</h4>
-                                        <p class="mb-2">Precision orthophoto generation for comprehensive land management and GIS integration.</p>
-                                        <span class="badge bg-primary">GIS</span>
-                                        <span class="badge bg-secondary">Mapping</span>
+                                        <h4>Cemetery Orthophoto Mosaic</h4>
+                                        <p class="mb-2">Comprehensive orthophoto mapping of cemetery providing GIS-ready aerial data for land management.</p>
+                                        <span class="badge bg-primary">Orthophoto</span>
+                                        <span class="badge bg-secondary">GIS</span>
                                     </div>
                                 </div>
                             </div>

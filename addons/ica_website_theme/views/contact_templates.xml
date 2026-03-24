@@ -57,18 +57,130 @@
                                             </div>
                                         </div>
 
-                                        <!-- Business Hours -->
-                                        <div class="contact-detail-item">
-                                            <div class="contact-icon">
-                                                <i class="fa fa-clock-o fa-2x text-primary"></i>
-                                            </div>
-                                            <div class="contact-text">
-                                                <h5>Business Hours</h5>
-                                                <p class="mb-0">Monday - Friday: 9:00 AM - 6:00 PM</p>
-                                                <p class="mb-0">Saturday: 10:00 AM - 4:00 PM</p>
-                                                <p class="mb-0">Sunday: Closed</p>
-                                            </div>
+                                    </div>
+
+                                    <!-- Availability Calendar -->
+                                    <div class="mt-4">
+                                        <h5 class="mb-3"><i class="fa fa-calendar text-primary"></i> Availability</h5>
+
+                                        <!-- Legend -->
+                                        <div class="d-flex gap-3 mb-2" style="font-size:0.82rem;">
+                                            <span><span class="ica-cal-dot" style="background:#28a745;"></span> Available</span>
+                                            <span><span class="ica-cal-dot" style="background:#fd7e14;"></span> Partial</span>
+                                            <span><span class="ica-cal-dot" style="background:#dc3545;"></span> Busy</span>
                                         </div>
+
+                                        <!-- Calendar widget -->
+                                        <div id="icaAvailCalendar" class="ica-availability-calendar">
+                                            <div class="ica-cal-header">
+                                                <button type="button" id="icaCalPrev" class="btn btn-sm btn-outline-secondary">&#8249;</button>
+                                                <span id="icaCalTitle" class="fw-bold"></span>
+                                                <button type="button" id="icaCalNext" class="btn btn-sm btn-outline-secondary">&#8250;</button>
+                                            </div>
+                                            <div id="icaCalGrid" class="ica-cal-grid"></div>
+                                        </div>
+
+                                        <style><![CDATA[
+                                        .ica-availability-calendar { background:#fff; border:1px solid #dee2e6; border-radius:8px; padding:12px; }
+                                        .ica-cal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+                                        .ica-cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; text-align:center; }
+                                        .ica-cal-grid .day-name { font-size:0.72rem; font-weight:600; color:#6c757d; padding:4px 0; }
+                                        .ica-cal-grid .day { font-size:0.82rem; padding:5px 2px; border-radius:4px; min-height:28px; line-height:18px; }
+                                        .ica-cal-grid .day.empty { background:transparent; }
+                                        .ica-cal-grid .day.today { font-weight:700; outline:2px solid #0d6efd; }
+                                        .ica-cal-grid .day.available { background:#d4edda; color:#155724; cursor:default; }
+                                        .ica-cal-grid .day.partial { background:#fde8d3; color:#7d3c00; cursor:default; }
+                                        .ica-cal-grid .day.busy { background:#f8d7da; color:#721c24; cursor:default; }
+                                        .ica-cal-grid .day.past { color:#ccc; }
+                                        .ica-cal-dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:4px; }
+                                        ]]></style>
+
+                                        <script><![CDATA[
+                                        (function() {
+                                            var currentDate = new Date();
+                                            var availability = {};
+
+                                            var dayNames = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+
+                                            function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+                                            function monthKey(y, m) { return y + '-' + pad(m + 1); }
+
+                                            function loadMonth(year, month) {
+                                                var start = year + '-' + pad(month + 1) + '-01';
+                                                var lastDay = new Date(year, month + 1, 0).getDate();
+                                                var end = year + '-' + pad(month + 1) + '-' + pad(lastDay);
+                                                fetch('/ica/availability?start=' + start + '&end=' + end)
+                                                    .then(function(r) { return r.json(); })
+                                                    .then(function(data) {
+                                                        data.forEach(function(item) { availability[item.date] = item; });
+                                                        renderCalendar();
+                                                    })
+                                                    .catch(function() { renderCalendar(); });
+                                            }
+
+                                            function renderCalendar() {
+                                                var y = currentDate.getFullYear();
+                                                var m = currentDate.getMonth();
+                                                var today = new Date();
+
+                                                document.getElementById('icaCalTitle').textContent =
+                                                    currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+
+                                                var grid = document.getElementById('icaCalGrid');
+                                                grid.innerHTML = '';
+
+                                                dayNames.forEach(function(d) {
+                                                    var el = document.createElement('div');
+                                                    el.className = 'day-name';
+                                                    el.textContent = d;
+                                                    grid.appendChild(el);
+                                                });
+
+                                                var firstDay = new Date(y, m, 1).getDay();
+                                                for (var i = 0; i < firstDay; i++) {
+                                                    var empty = document.createElement('div');
+                                                    empty.className = 'day empty';
+                                                    grid.appendChild(empty);
+                                                }
+
+                                                var daysInMonth = new Date(y, m + 1, 0).getDate();
+                                                for (var d = 1; d <= daysInMonth; d++) {
+                                                    var dateStr = y + '-' + pad(m + 1) + '-' + pad(d);
+                                                    var el = document.createElement('div');
+                                                    var classes = ['day'];
+
+                                                    var thisDate = new Date(y, m, d);
+                                                    var todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                                                    if (thisDate < todayDate) classes.push('past');
+                                                    if (thisDate.getTime() === todayDate.getTime()) classes.push('today');
+
+                                                    if (availability[dateStr]) {
+                                                        classes.push(availability[dateStr].status);
+                                                        if (availability[dateStr].note) el.title = availability[dateStr].note;
+                                                    }
+
+                                                    el.className = classes.join(' ');
+                                                    el.textContent = d;
+                                                    grid.appendChild(el);
+                                                }
+                                            }
+
+                                            document.addEventListener('DOMContentLoaded', function() {
+                                                loadMonth(currentDate.getFullYear(), currentDate.getMonth());
+
+                                                document.getElementById('icaCalPrev').addEventListener('click', function() {
+                                                    currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+                                                    loadMonth(currentDate.getFullYear(), currentDate.getMonth());
+                                                });
+
+                                                document.getElementById('icaCalNext').addEventListener('click', function() {
+                                                    currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+                                                    loadMonth(currentDate.getFullYear(), currentDate.getMonth());
+                                                });
+                                            });
+                                        })();
+                                        ]]></script>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +191,7 @@
                                     <h2 class="mb-4">
                                         <i class="fa fa-paper-plane text-primary"></i> Send Us a Message
                                     </h2>
-                                    <form action="/website/form/" method="post" class="s_website_form" data-model_name="mail.mail" data-success-mode="redirect" data-success_page="/contactus-thank-you">
+                                    <form action="/ica/contact" method="post" class="o_website_form">
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="contact_name" class="form-label">Your Name <span class="text-danger">*</span></label>
@@ -109,15 +221,163 @@
                                         <div class="mb-3">
                                             <label for="contact_subject" class="form-label">Subject <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="contact_subject" name="subject" required="required" placeholder="Project inquiry"/>
+                                        </div>
+
+                                        <!-- Project Location -->
+                                        <div class="mb-3">
+                                            <label for="contact_address" class="form-label">Project Location</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="contact_address" name="project_location" placeholder="Enter address or pick on map" autocomplete="off"/>
+                                                <button type="button" class="btn btn-outline-secondary" id="toggleMapBtn" title="Pick location on map">
+                                                    <i class="fa fa-map-marker"></i> Map
+                                                </button>
+                                                <button type="button" class="btn btn-outline-primary" id="searchAddressBtn" title="Search address">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
                                             </div>
+                                            <input type="hidden" id="contact_lat" name="project_lat"/>
+                                            <input type="hidden" id="contact_lng" name="project_lng"/>
+                                            <div id="mapSearchResults" class="list-group position-absolute" style="z-index:9999; width:100%; display:none;"></div>
+
+                                            <!-- Map container -->
+                                            <div id="locationMapWrapper" style="display:none; margin-top:8px;">
+                                                <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+                                                <div id="locationMap" style="height:300px; border-radius:8px; border:1px solid #dee2e6;"></div>
+                                                <p class="text-muted small mt-1 mb-0"><i class="fa fa-info-circle"></i> Click on the map to set the project location</p>
+                                            </div>
+                                        </div>
+
                                         <div class="mb-3">
                                             <label for="contact_message" class="form-label">Message <span class="text-danger">*</span></label>
                                             <textarea class="form-control" id="contact_message" name="body_html" rows="5" required="required" placeholder="Tell us about your project..."></textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-lg">
-                                            <i class="fa fa-paper-plane me-2"></i> Send Message
-                                        </button>
+
+                                        <div class="s_website_form_submit">
+                                            <button type="submit" class="btn btn-primary btn-lg s_website_form_send">
+                                                <i class="fa fa-paper-plane me-2"></i> Send Message
+                                            </button>
+                                        </div>
                                     </form>
+
+                                    <!-- Map scripts outside form to avoid breaking Odoo form submit -->
+                                    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+                                    <script><![CDATA[
+                                    (function() {
+                                        var map, marker, mapInitialized = false;
+
+                                        function initMap() {
+                                            if (mapInitialized) return;
+                                            mapInitialized = true;
+                                            map = L.map('locationMap').setView([55.1694, 23.8813], 7);
+                                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                                attribution: '© OpenStreetMap contributors',
+                                                maxZoom: 19
+                                            }).addTo(map);
+                                            map.on('click', function(e) {
+                                                placeMarker(e.latlng.lat, e.latlng.lng);
+                                                reverseGeocode(e.latlng.lat, e.latlng.lng);
+                                            });
+                                        }
+
+                                        function placeMarker(lat, lng) {
+                                            if (marker) {
+                                                marker.setLatLng([lat, lng]);
+                                            } else {
+                                                marker = L.marker([lat, lng], {draggable: true}).addTo(map);
+                                                marker.on('dragend', function() {
+                                                    var pos = marker.getLatLng();
+                                                    reverseGeocode(pos.lat, pos.lng);
+                                                });
+                                            }
+                                            document.getElementById('contact_lat').value = lat.toFixed(6);
+                                            document.getElementById('contact_lng').value = lng.toFixed(6);
+                                        }
+
+                                        function reverseGeocode(lat, lng) {
+                                            fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + lng)
+                                                .then(function(r) { return r.json(); })
+                                                .then(function(data) {
+                                                    if (data && data.display_name) {
+                                                        document.getElementById('contact_address').value = data.display_name;
+                                                    }
+                                                });
+                                        }
+
+                                        function searchAddress(query) {
+                                            if (!query || query.length < 3) return;
+                                            fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(query) + '&limit=5')
+                                                .then(function(r) { return r.json(); })
+                                                .then(function(results) {
+                                                    var box = document.getElementById('mapSearchResults');
+                                                    box.innerHTML = '';
+                                                    if (!results.length) { box.style.display = 'none'; return; }
+                                                    results.forEach(function(item) {
+                                                        var a = document.createElement('a');
+                                                        a.href = '#';
+                                                        a.className = 'list-group-item list-group-item-action small';
+                                                        a.textContent = item.display_name;
+                                                        a.addEventListener('click', function(e) {
+                                                            e.preventDefault();
+                                                            document.getElementById('contact_address').value = item.display_name;
+                                                            box.style.display = 'none';
+                                                            var lat = parseFloat(item.lat), lng = parseFloat(item.lon);
+                                                            document.getElementById('contact_lat').value = lat.toFixed(6);
+                                                            document.getElementById('contact_lng').value = lng.toFixed(6);
+                                                            showMap();
+                                                            map.setView([lat, lng], 14);
+                                                            placeMarker(lat, lng);
+                                                        });
+                                                        box.appendChild(a);
+                                                    });
+                                                    box.style.display = 'block';
+                                                });
+                                        }
+
+                                        function showMap() {
+                                            var wrapper = document.getElementById('locationMapWrapper');
+                                            wrapper.style.display = 'block';
+                                            initMap();
+                                            setTimeout(function() { map.invalidateSize(); }, 200);
+                                        }
+
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            document.getElementById('toggleMapBtn').addEventListener('click', function() {
+                                                var wrapper = document.getElementById('locationMapWrapper');
+                                                if (wrapper.style.display === 'none') {
+                                                    showMap();
+                                                } else {
+                                                    wrapper.style.display = 'none';
+                                                }
+                                            });
+
+                                            document.getElementById('searchAddressBtn').addEventListener('click', function() {
+                                                searchAddress(document.getElementById('contact_address').value);
+                                            });
+
+                                            var addrInput = document.getElementById('contact_address');
+                                            var searchTimeout;
+                                            addrInput.addEventListener('input', function() {
+                                                clearTimeout(searchTimeout);
+                                                searchTimeout = setTimeout(function() {
+                                                    searchAddress(addrInput.value);
+                                                }, 500);
+                                            });
+
+                                            addrInput.addEventListener('keydown', function(e) {
+                                                if (e.key === 'Enter') {
+                                                    e.preventDefault();
+                                                    searchAddress(addrInput.value);
+                                                }
+                                            });
+
+                                            document.addEventListener('click', function(e) {
+                                                if (!e.target.closest('#contact_address') && !e.target.closest('#mapSearchResults')) {
+                                                    document.getElementById('mapSearchResults').style.display = 'none';
+                                                }
+                                            });
+                                        });
+                                    })();
+                                    ]]></script>
                                 </div>
                             </div>
 

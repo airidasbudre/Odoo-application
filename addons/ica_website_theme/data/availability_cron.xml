@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Server action for the cron -->
+    <record id="action_cron_generate_availability" model="ir.actions.server">
+        <field name="name">Generate Default Drone Availability</field>
+        <field name="model_id" ref="model_ica_availability"/>
+        <field name="state">code</field>
+        <field name="code">env['ica.availability'].cron_generate_availability()</field>
+    </record>
+
+    <!-- Cron job -->
+    <record id="cron_generate_availability" model="ir.cron">
+        <field name="cron_name">Generate Default Drone Availability</field>
+        <field name="ir_actions_server_id" ref="action_cron_generate_availability"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">weeks</field>
+        <field name="active">True</field>
+    </record>
+</odoo>

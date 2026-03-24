@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="ica_availability_list" model="ir.ui.view">
+        <field name="name">ica.availability.list</field>
+        <field name="model">ica.availability</field>
+        <field name="arch" type="xml">
+            <list string="Availability" editable="bottom" default_order="date">
+                <field name="date"/>
+                <field name="status"
+                    decoration-success="status == 'available'"
+                    decoration-warning="status == 'partial'"
+                    decoration-danger="status == 'busy'"/>
+                <field name="note"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="ica_availability_form" model="ir.ui.view">
+        <field name="name">ica.availability.form</field>
+        <field name="model">ica.availability</field>
+        <field name="arch" type="xml">
+            <form string="Availability">
+                <sheet>
+                    <group>
+                        <field name="date"/>
+                        <field name="status" widget="radio"/>
+                        <field name="note" placeholder="e.g. Morning only, Limited slots..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Server action: Generate Defaults -->
+    <record id="action_generate_default_availability" model="ir.actions.server">
+        <field name="name">Generate Default Availability</field>
+        <field name="model_id" ref="model_ica_availability"/>
+        <field name="binding_model_id" ref="model_ica_availability"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">env['ica.availability'].generate_default_availability()</field>
+    </record>
+
+    <!-- Calendar View -->
+    <record id="ica_availability_calendar" model="ir.ui.view">
+        <field name="name">ica.availability.calendar</field>
+        <field name="model">ica.availability</field>
+        <field name="arch" type="xml">
+            <calendar string="Availability" date_start="date" color="color" mode="month" quick_create="False">
+                <field name="status"/>
+                <field name="note"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="ica_availability_action" model="ir.actions.act_window">
+        <field name="name">Availability Calendar</field>
+        <field name="res_model">ica.availability</field>
+        <field name="view_mode">calendar,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No availability entries yet
+            </p>
+            <p>Click <b>Action → Generate Default Availability</b> to auto-fill the next 90 days.</p>
+            <p>Weekdays = Partially Available, Weekends = Available.</p>
+        </field>
+    </record>
+
+    <!-- Menu under Website > Content -->
+    <menuitem id="ica_availability_menu_root"
+        name="Drone Availability"
+        parent="website.menu_content"
+        action="ica_availability_action"
+        sequence="50"/>
+</odoo>

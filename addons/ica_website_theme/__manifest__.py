@@ -16,6 +16,9 @@
     'author': 'Professional Drone Services',
     'depends': ['website'],
     'data': [
+        'security/ir.model.access.csv',
+        'views/availability_views.xml',
+        'data/availability_cron.xml',
         'views/website_templates.xml',
         'views/services_templates.xml',
         'views/portfolio_templates.xml',

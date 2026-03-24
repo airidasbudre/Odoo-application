@@ -10,7 +10,7 @@
                         <div class="row align-items-center min-vh-50">
                             <div class="col-lg-6">
                                 <div class="hero-badge mb-3">
-                                    <i class="fa fa-certificate"></i> FAA Certified &amp; Insured
+                                    <i class="fa fa-certificate"></i> EASA Certified &amp; Insured
                                 </div>
                                 <h1 class="hero-title">Professional Drone Services</h1>
                                 <p class="hero-subtitle">
@@ -28,11 +28,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="hero-image">
-                                    <!-- Placeholder for hero image -->
-                                    <div class="placeholder-box">
-                                        <i class="fa fa-camera fa-5x mb-3"></i>
-                                        <p>Add Your Stunning Aerial Photo Here</p>
-                                    </div>
+                                    <img src="/ica_website_theme/static/src/img/drone-mavic.png" alt="Drone Mavic" class="img-fluid rounded shadow"/>
                                 </div>
                             </div>
                         </div>
@@ -54,17 +50,17 @@
                                     <div class="why-icon">
                                         <i class="fa fa-shield fa-3x"></i>
                                     </div>
-                                    <h4>FAA Certified</h4>
+                                    <h4>EASA Certified</h4>
                                     <p>Licensed and certified pilots with full insurance coverage</p>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 mb-4">
                                 <div class="why-card text-center">
                                     <div class="why-icon">
-                                        <i class="fa fa-trophy fa-3x"></i>
+                                        <i class="fa fa-check-circle fa-3x"></i>
                                     </div>
-                                    <h4>Award Winning</h4>
-                                    <p>Recognized for excellence in aerial photography and mapping</p>
+                                    <h4>Trusted Quality</h4>
+                                    <p>Delivering reliable, high-quality results on every project</p>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 mb-4">
@@ -171,7 +167,7 @@
                     </div>
                 </section>
 
-                <!-- Portfolio Section -->
+                <!-- Portfolio Section (commented out)
                 <section class="portfolio-section py-5 bg-light">
                     <div class="container">
                         <div class="row text-center mb-5">
@@ -231,6 +227,7 @@
                         </div>
                     </div>
                 </section>
+                -->
 
                 <!-- CTA Section -->
                 <section class="ica-cta py-5">

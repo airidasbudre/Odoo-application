@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ica_availability_public,ica.availability public read,model_ica_availability,,1,0,0,0
+access_ica_availability_admin,ica.availability admin,model_ica_availability,base.group_user,1,1,1,1
